@@ -27,6 +27,7 @@ public class UserEntity {
     @Column(nullable = false)
     private LocalDate birthdate;
     @ManyToMany
+    @JoinTable (name = "user_x_roles")
     @LazyCollection(LazyCollectionOption.FALSE)
     private Set<RoleEntity> roles;
 
