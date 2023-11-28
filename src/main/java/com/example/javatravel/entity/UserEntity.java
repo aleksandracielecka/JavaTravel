@@ -14,7 +14,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false)
     private String name;
@@ -26,10 +26,11 @@ public class UserEntity {
     private String password;
     @Column(nullable = false)
     private LocalDate birthdate;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable (name = "user_x_roles")
-    @LazyCollection(LazyCollectionOption.FALSE)
     private Set<RoleEntity> roles;
+    @OneToMany(fetch = FetchType.EAGER)
+    private Set<PurchaseEntity> purchases;
 
 
 }
