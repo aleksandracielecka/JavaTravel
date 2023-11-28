@@ -20,17 +20,6 @@ public class UserService implements UserDetailsService {
     @Autowired
     UserRepository userRepo;
 
-//    @Override
-//    public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {
-//        UserEntity user = userRepo.findByEmail(userEmail);
-//        if(user==null){
-//            new UsernameNotFoundException("User not exists by Username");
-//        }
-//        Set<GrantedAuthority> authorities = user.getRoles().stream()
-//                .map((role) -> new SimpleGrantedAuthority(role.getName()))
-//                .collect(Collectors.toSet());
-//        return new User(userEmail,user.getPassword(),authorities);
-//    }
 
     @Override
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {

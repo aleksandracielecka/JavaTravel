@@ -1,5 +1,5 @@
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -10,7 +10,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand">Spring Security Login With Database Authentication</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -22,7 +23,7 @@
         </div>
     </div>
 </nav>
-<br /><br />
+<br/><br/>
 
 
 <div class="container">
@@ -30,6 +31,22 @@
         <h1> Welcome to Spring Security world!</h1>
         <p th:text="${userRoles}"></p>
     </div>
+
 </div>
+<div class="container mt-4">
+<h2>Welcome</h2>
+<div sec:authorize="hasRole('USER')">
+    <button type="button" class="btn btn-primary">Hello Client!</button>
+   </div>
+<div sec:authorize="hasRole('ADMIN')">
+    <button type="button" class="btn btn-success">Hello Admin!</button>
+   </div>
+<div sec:authorize="isAuthenticated()"> Text visible only to authenticated users.</div>
+Authenticated email:
+<div sec:authentication="name"></div>
+Authenticated user roles:
+<div sec:authentication="authorities"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
