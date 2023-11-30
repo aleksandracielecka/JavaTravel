@@ -29,7 +29,7 @@ public class HotelEntity {
     @JoinColumn(name = "location_id", nullable = false)
     private LocationEntity location;
 
-    @OneToOne(fetch =FetchType.EAGER)
+    @OneToOne(fetch =FetchType.EAGER, mappedBy = "hotel")
     private TripEntity trip;
 
 }

@@ -29,7 +29,7 @@ public class UserEntity {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable (name = "user_x_roles")
     private Set<RoleEntity> roles;
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
     private Set<PurchaseEntity> purchases;
 
 

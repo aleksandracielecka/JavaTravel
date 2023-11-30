@@ -3,6 +3,7 @@ package com.example.javatravel.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.repository.cdi.Eager;
 
 @Entity
 @Getter
@@ -19,10 +20,14 @@ public class PurchaseEntity {
     private int childNumber;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinTable(name= "trip_id")
+    @JoinColumn(name= "trip_id")
     private TripEntity trip;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinTable(name= "standard_id")
+    @JoinColumn(name= "standard_id")
     private StandardEntity standard;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name= "user_id")
+    private UserEntity user;
 }

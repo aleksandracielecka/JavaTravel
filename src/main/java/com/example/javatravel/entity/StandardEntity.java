@@ -18,6 +18,9 @@ public class StandardEntity {
     @OneToOne(fetch = FetchType.EAGER)
     private PurchaseEntity purchase;
 
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "standard")
+    private PriceEntity price;
+
 //czy możemy to tak zostawić??
     public enum StandardType {
         OB,
