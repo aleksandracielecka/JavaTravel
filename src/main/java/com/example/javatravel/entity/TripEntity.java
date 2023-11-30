@@ -23,27 +23,24 @@ public class TripEntity {
     private LocalDate endDate;
 
     @Column(nullable = false)
-    private Integer adultNumber;
+    private Integer maxAdultNumber; // add maks
 
     @Column(nullable = false)
-    private Integer childNumber;
+    private Integer maxChildNumber;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name ="hotel_id",nullable = false)
+    @OneToOne
     private HotelEntity hotel;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable (name = "trip_x_airportsFrom")
-    private Set<AirportEntity> airportsFrom;
+    @OneToOne
+    private AirportEntity airportFrom;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable (name = "trip_x_airportsTo")
-    private Set<AirportEntity> airportsTo;
+    @OneToOne
+    private AirportEntity airportTo;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "trip")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id")
     private Set<PriceEntity> prices;
 
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "trip")
-    private PurchaseEntity purchase;
+//    @OneToOne(fetch = FetchType.EAGER, mappedBy = "trip")
+//    private PurchaseEntity purchase;
 
 }

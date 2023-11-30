@@ -18,18 +18,8 @@ public class PriceEntity {
     @Column(name = "flight_price" , nullable = false)
     private Long flightPrice;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "trip_id")
-    private TripEntity trip;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "standard_id")
+    @OneToOne
     private StandardEntity standard;
-
-    // chyba do usuniecia
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "user_id")
-//    private UserEntity user;
 
 
 

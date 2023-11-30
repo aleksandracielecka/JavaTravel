@@ -17,27 +17,32 @@ public class LocationEntity {
 
     @Enumerated(EnumType.STRING)
     private Continent continent;
+
     @Column(nullable = false)
     private String country;
+
     @Column(nullable = false)
     private String city;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    private Set<AirportEntity> airports;
+    @Column(nullable = false)
+    private String address;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "location")
-    private Set<HotelEntity> hotels;
+//    @OneToMany(fetch = FetchType.EAGER)
+//    private Set<AirportEntity> airports;
+
+//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "location")
+//    private Set<HotelEntity> hotels;
 
 
 
     public enum Continent{
-        EUROPE,
-        ASIA,
-        AFRICA,
+        EUROPA,
+        AZJA,
+        AFRYKA,
         AUSTRALIA,
-        NORTH_AMERICA,
-        SOUTH_AMERICA,
-        ANTARCTICA
+        AMERYKA_PÓŁNOCNA,
+        AMERYKA_POLUDNIOWA,
+        ANTARKTYDA
 
     }
 

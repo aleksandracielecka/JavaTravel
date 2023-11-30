@@ -4,3 +4,76 @@ INSERT INTO user_entity (name, surname, email, password, birthdate) VALUES
 
 INSERT INTO role_entity (name) VALUES ('ROLE_ADMIN'),('ROLE_USER');
 INSERT INTO user_x_roles VALUES (1,1),(2,2);
+
+INSERT INTO location_entity (continent, country, city,address)
+VALUES
+    ('EUROPA','Polska','Wrocław','addresWro'),
+    ('EUROPA','Polska','Kraków','addres'),
+    ('EUROPA','Polska','Warszawa','addres'),
+    ('EUROPA','Polska','Gdańsk','addres'),
+    ('EUROPA','Włochy','Mediolan','addres'),
+    ('EUROPA','Hiszpania','Malaga','addres'),
+    ('EUROPA','Portugalia','Lizbona','addres'),
+    ('AFRYKA','Egipt','Hurghada','addres'),
+    ('AFRYKA','Tanzania','Zanzibar','addres'),
+    ('AZJA','Tajlandia','Bangkok','addres'),
+    ('AZJA','Japonia','Tokio','addres'),
+    ('AMERYKA_PÓŁNOCNA','USA','New York','addres'),
+    ('AMERYKA_PÓŁNOCNA','USA','Los Angeles','addres'),
+    ('AMERYKA_POLUDNIOWA','Meksyk','Acapulco','addres'),
+    ('AMERYKA_POLUDNIOWA','Peru','Lima','addres'),
+    ('AUSTRALIA','Australia','Melbourne','addres'),
+    ('AUSTRALIA','Australia','Sydney','addres');
+
+INSERT INTO airport_entity (code, name, location_id)
+VALUES
+    ('WRO','Mikołaja Kopernika',1),
+    ('KRK','Jana Pawła II, Balice',2),
+    ('WMI','Modlin',3),
+    ('GDN','Lecha Wałęsy, Rębiechowo',4),
+    ('MXP','Malpensa',5),
+    ('AGP','Pablo Ruiz Picasso',6),
+    ('ZYD','LISBON TP',7),
+    ('HRG','Hurghada',8),
+    ('ZNZ','Kisauni',9),
+    ('BKK','Suvarnabhumi International',10),
+    ('HDN','Tokyo Haneda International  ',11),
+    ('JRB','Downtown Manhattan H/p',12),
+    ('LAX','LOS ANGELES International',13),
+    ('ACA','General Juan N. Alvarez International',14),
+    ('LIM','Jorge Chavez International',15),
+    ('MEL','Tullamarine',16),
+    ('SWZ','Sydney West',17);
+
+INSERT INTO hotel_entity (name, description, stars,location_id)
+VALUES
+
+    ('Leonardo Hotel Milan City Center','desc',5,5),
+    ('Hotel Vincci Málaga',' opisMálaga',4,6),
+    ('Lizbona Hotel','opisLizbona',3,7),
+    ('Hurghada HOTEL','opisHurghada',3,8),
+    ('hotel Zanzibar','opis',3,9),
+    ('Bangkok hotel','opisBangkok',3,10),
+    ('Tokio hotel','opisTokio',5,11),
+    ('New York hotel','opisYork',3,12),
+    ('Los Angeles hotel','opisLos Angeles',4,13),
+    ('Acapulco hotel','opisAcapulco',5,14),
+    ('Lima hotel','opisLima',2,15),
+    ('Melbourne hotel','opisMelbourne',5,16),
+    ('Sydney hotel','opisSydney',4,17);
+
+
+INSERT INTO standard_entity (standard_type)
+VALUES
+    ('OB'),
+    ('BB'),
+    ('HB'),
+    ('FB'),
+    ('AI');
+
+
+
+
+
+
+
