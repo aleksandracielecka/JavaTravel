@@ -13,20 +13,14 @@ import java.util.Set;
 public class AirportEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String code;
 
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "location_id", nullable = false)
+    @OneToOne
     private LocationEntity location;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "airportsFrom")
-    private Set<TripEntity> tripsFromAirport;
 
-    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "airportsTo")
-    private Set<TripEntity> tripsToAirport;
 
 }

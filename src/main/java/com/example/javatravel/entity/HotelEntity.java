@@ -17,19 +17,13 @@ public class HotelEntity {
     private String name;
 
     @Column(nullable = false)
-    private String address;
-
-    @Column(nullable = false)
     private String description;
 
     @Column(nullable = false)
     private int stars;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "location_id", nullable = false)
+    @OneToOne
     private LocationEntity location;
 
-    @OneToOne(fetch =FetchType.EAGER, mappedBy = "hotel")
-    private TripEntity trip;
 
 }

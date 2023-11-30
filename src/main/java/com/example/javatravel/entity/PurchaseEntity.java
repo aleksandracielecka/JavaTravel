@@ -19,12 +19,10 @@ public class PurchaseEntity {
     @Column(name = "child number",nullable = false)
     private int childNumber;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name= "trip_id")
+    @OneToOne
     private TripEntity trip;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name= "standard_id")
+    @OneToOne
     private StandardEntity standard;
 
     @ManyToOne(fetch = FetchType.EAGER)

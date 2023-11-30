@@ -12,16 +12,6 @@ public class StandardEntity {
     @Enumerated(EnumType.STRING)
     private StandardType standardType;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    private TripEntity trip;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    private PurchaseEntity purchase;
-
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "standard")
-    private PriceEntity price;
-
-//czy możemy to tak zostawić??
     public enum StandardType {
         OB,
         BB,
