@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -21,7 +23,10 @@ public class AirportEntity {
     @JoinColumn(name = "location_id", nullable = false)
     private LocationEntity location;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private TripEntity trip;
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "airportsFrom")
+    private Set<TripEntity> tripsFromAirport;
+
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "airportsTo")
+    private Set<TripEntity> tripsToAirport;
 
 }

@@ -25,7 +25,7 @@ public class LocationEntity {
     @OneToMany(fetch = FetchType.EAGER)
     private Set<AirportEntity> airports;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "location")
     private Set<HotelEntity> hotels;
 
 

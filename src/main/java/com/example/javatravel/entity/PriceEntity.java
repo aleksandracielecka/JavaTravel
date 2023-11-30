@@ -26,9 +26,10 @@ public class PriceEntity {
     @JoinColumn(name = "standard_id")
     private StandardEntity standard;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+    // chyba do usuniecia
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "user_id")
+//    private UserEntity user;
 
 
 

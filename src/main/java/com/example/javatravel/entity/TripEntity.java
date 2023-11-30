@@ -32,20 +32,18 @@ public class TripEntity {
     @JoinColumn(name ="hotel_id",nullable = false)
     private HotelEntity hotel;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name ="airport_id_from",nullable = false)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable (name = "trip_x_airportsFrom")
     private Set<AirportEntity> airportsFrom;
 
-//    @OneToMany(fetch = FetchType.EAGER)
-//    @JoinColumn(name ="airport_id_to",nullable = false)
-//    private Set<AirportEntity> airportsTo;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable (name = "trip_x_airportsTo")
+    private Set<AirportEntity> airportsTo;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name ="price_id",nullable = false)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "trip")
     private Set<PriceEntity> prices;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinTable(name= "purchase_id")
+    @OneToOne(fetch = FetchType.EAGER, mappedBy = "trip")
     private PurchaseEntity purchase;
 
 }
