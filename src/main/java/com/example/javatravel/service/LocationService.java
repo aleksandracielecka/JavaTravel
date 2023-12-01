@@ -3,6 +3,7 @@ package com.example.javatravel.service;
 import com.example.javatravel.entity.LocationEntity;
 import com.example.javatravel.repository.LocationRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class LocationService {
 
         return locationRepository.findAll();
     }
+
     public void  deleteLocation(Long id) {
         if(!locationRepository.existsById(id)){
             throw new EntityNotFoundException("Location not found" + id);
