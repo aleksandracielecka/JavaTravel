@@ -23,7 +23,7 @@ public class TripEntity {
     private LocalDate endDate;
 
     @Column(nullable = false)
-    private Integer maxAdultNumber; // add maks
+    private Integer maxAdultNumber;
 
     @Column(nullable = false)
     private Integer maxChildNumber;
