@@ -3,6 +3,7 @@ package com.example.javatravel.service;
 import com.example.javatravel.dto.TripDto;
 import com.example.javatravel.entity.TripEntity;
 import com.example.javatravel.repository.TripRepository;
+import com.example.javatravel.utils.mapper.TripMapper;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -34,6 +35,8 @@ public class TripService {
     }
 
     public TripDto addTrip(TripDto tripDto) {
-        return null;
+        TripEntity tripEntity = TripMapper.toTripEntity(tripDto);
+        TripEntity addTrip = tripRepository.save(tripEntity);
+        return TripMapper.toTripDto(addTrip);
     }
 }

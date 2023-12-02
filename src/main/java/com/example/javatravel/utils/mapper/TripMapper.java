@@ -6,7 +6,7 @@ import com.example.javatravel.entity.TripEntity;
 
 public class TripMapper {
 
-    public static TripEntity toAirportEntity(TripDto tripDto){
+    public static TripEntity toTripEntity(TripDto tripDto){
         TripEntity tripEntity = new TripEntity();
         tripEntity.setId(tripDto.getId());
         tripEntity.setStartDate(tripDto.getStartDate());
@@ -20,7 +20,7 @@ public class TripMapper {
         return tripEntity;
     }
 
-    public static TripDto toAirportDto(TripEntity tripEntity){
+    public static TripDto toTripDto(TripEntity tripEntity){
         TripDto tripDto = new TripDto();
         tripDto.setId(tripEntity.getId());
         tripDto.setStartDate(tripEntity.getStartDate());
