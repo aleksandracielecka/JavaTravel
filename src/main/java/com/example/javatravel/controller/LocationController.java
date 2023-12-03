@@ -1,9 +1,11 @@
 package com.example.javatravel.controller;
 
-import com.example.javatravel.entity.LocationEntity;
+import com.example.javatravel.dto.LocationDto;
 import com.example.javatravel.service.LocationService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -11,16 +13,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @RequestMapping (value="/locations", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class LocationController {
+
     private final LocationService locationService;
+
     @GetMapping
-    public ResponseEntity<List<LocationEntity>> getLocationList() {
+    public ResponseEntity<List<LocationDto>> getLocationList() {
 
         try {
-            List<LocationEntity> locations = locationService.getLocationList();
+            List<LocationDto> locations = locationService.getLocationList();
             return ResponseEntity.ok(locations);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -28,15 +33,13 @@ public class LocationController {
     }
 
     @PutMapping
-    public ResponseEntity<LocationEntity> updateLocation(@RequestBody LocationEntity location) {
+    public ResponseEntity<LocationDto> updateLocation(@RequestBody LocationDto location) {
         try {
-            LocationEntity updateLocation = locationService.updateLocation(location);
+            LocationDto updateLocation = locationService.updateLocation(location);
             return ResponseEntity.ok(updateLocation);
-
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.notFound().build();
         }
-
     }
 
     @DeleteMapping("/{id}")
@@ -46,8 +49,19 @@ public class LocationController {
             return ResponseEntity.noContent().build();
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
+        } catch (DataIntegrityViolationException e){
+            log.error("Location cannot be removed", e);
+            return ResponseEntity.badRequest().build();
+        }
+    }
 
-
+    @PostMapping
+    public ResponseEntity<LocationDto> createLocation(LocationDto location) {
+        try {
+            LocationDto newLocation = locationService.addLocation(location);
+            return ResponseEntity.ok(newLocation);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 }
