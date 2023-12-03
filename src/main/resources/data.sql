@@ -23,7 +23,8 @@ VALUES
     ('AMERYKA_POLUDNIOWA','Meksyk','Acapulco','addres'),
     ('AMERYKA_POLUDNIOWA','Peru','Lima','addres'),
     ('AUSTRALIA','Australia','Melbourne','addres'),
-    ('AUSTRALIA','Australia','Sydney','addres');
+    ('AUSTRALIA','Australia','Sydney','addres'),
+    ('AUSTRALIA','Australia','Brisbane','addres');
 
 INSERT INTO airport_entity (code, name, location_id)
 VALUES

@@ -1,5 +1,6 @@
 package com.example.javatravel.controller;
 
+import com.example.javatravel.dto.LocationDto;
 import com.example.javatravel.dto.TripDto;
 import com.example.javatravel.entity.HotelEntity;
 import com.example.javatravel.entity.LocationEntity;
@@ -43,7 +44,7 @@ public class NewTripController {
     @GetMapping("/create_trip")
     public String getWelcome(Model model) {
         model.addAttribute("welcome", "Witaj adminie, wprowadź nową wycieczkę:");
-        List<LocationEntity> locations = locationService.getLocationList();
+        List<LocationDto> locations = locationService.getLocationList();
         model.addAttribute("locations", locations);
         List<HotelEntity> hotels = hotelService.getHotelList();
         model.addAttribute("hotels", hotels);
