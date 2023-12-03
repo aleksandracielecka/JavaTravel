@@ -30,6 +30,8 @@ public class LocationService {
         return locationRepository.save(location);
     }
 
+
+
 //    public void addLocation(LocationEntity location){
 //
 //        locationRepository.save(location);
