@@ -71,7 +71,17 @@ VALUES
     ('FB'),
     ('AI');
 
+INSERT INTO trip_entity (start_date,end_date,max_adult_number,max_child_number,airport_from_code,airport_to_code,hotel_id)
+VALUES
+    ('2024-06-25','2024-07-05',20,10,'WRO','WRO',5),
+    ('2024-07-25','2024-08-05',25,5,null,null,null);
 
+
+
+INSERT INTO price_entity (price_per_day,flight_price)
+VALUES
+    (4000,500),
+    (7000,600);
 
 
 
