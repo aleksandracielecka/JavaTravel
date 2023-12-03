@@ -40,7 +40,6 @@ public class TripEntity {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "id")
     private Set<PriceEntity> prices;
 
-//    @OneToOne(fetch = FetchType.EAGER, mappedBy = "trip")
-//    private PurchaseEntity purchase;
+
 
 }
