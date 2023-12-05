@@ -35,7 +35,6 @@ public class NewTripController {
     private TripService tripService;
     private HotelService hotelService;
     private LocationService locationService;
-
     private AirportService airportService;
 
     @Autowired

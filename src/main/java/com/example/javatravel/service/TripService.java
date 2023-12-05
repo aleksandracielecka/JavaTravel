@@ -35,8 +35,13 @@ public class TripService {
     }
 
     public TripDto addTrip(TripDto tripDto) {
+
+        //validate()
+        //tripValidationException extens RuntimeException
+        //"nieprawidłowe daty.. sprawdź..."
         TripEntity tripEntity = TripMapper.toTripEntity(tripDto);
         TripEntity addTrip = tripRepository.save(tripEntity);
+
         return TripMapper.toTripDto(addTrip);
     }
 }

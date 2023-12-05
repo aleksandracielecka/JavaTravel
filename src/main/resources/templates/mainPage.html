@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html
+        xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> JAVA TRAVEL</h1>
+
+
+<h2> Wybierz kierunki podróży</h2>
+<div th:each="l : ${locations}">
+    <input type="checkbox" th:id="'location_' + ${l.getId()}" th:name="location" th:value="${l.getId()}"/>
+    <label th:for="'location_' + ${l.getId()}" th:text="${l.getCountry()+' '+l.getCity}"></label>
+    <br/>
+</div>
+
+<label for="startDate">Wybierz datę rozpoczęcia wycieczki:</label>
+<input type="date" id="startDate" name="startDate">
+<p></p>
+<label for="endDate">Wybierz datę zakończenia wycieczki:</label>
+<input type="date" id="endDate" name="endDate">
+<p> </p>
+
+</body>
+</html>
+
+
+<!--<select th:field="*{locations}">-->
+<!--    <option value="">Wybierz lokację</option>-->
+<!--    <option th:each="l : ${locations}" th:value="${l.getId()}"-->
+<!--            th:text="${l.getCountry() }">-->
+<!--    </option>-->
+<!--</select>-->
+
+
+<!--<select th:field="*{locations}">-->
+<!--    <option value="">Wybierz lokację</option>-->
+<!--    <option th:each="l : ${locations}" th:value="${l.getId()}"-->
+<!--            th:text="${l.getCountry() +', '+-->
+<!--            l.getCity()}">-->
+<!--    </option>-->
+<!--</select>-->
