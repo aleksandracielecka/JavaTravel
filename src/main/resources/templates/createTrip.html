@@ -18,6 +18,17 @@
     ', '+h.getDescription()+' '+h.getStars()+h.getLocation()}"></option>
 </select>
     <p> </p>
+    <select name="airportCode">
+        <option value="">Wybierz lotnisko wylotu</option>
+        <option th:each="a: ${airportsFrom}" th:value="${a.getCode()}" th:text="${a.getName()+
+    ', '+a.getLocation()}"></option>
+    </select>
+    <select name="airportCode">
+        <option value="">Wybierz lotnisko przylotu</option>
+        <option th:each="a: ${airportsTo}" th:value="${a.getCode()}" th:text="${a.getName()+
+    ', '+a.getLocation()}"></option>
+    </select>
+    <p> </p>
     <label for="startDate">Data rozpoczęcia wycieczki:</label>
     <input type="date" id="startDate" name="startDate">
     <p> </p>

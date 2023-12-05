@@ -3,9 +3,8 @@ package com.example.javatravel.repository;
 import com.example.javatravel.entity.AirportEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AirportRepository extends JpaRepository<AirportEntity,Long> {
+public interface AirportRepository extends JpaRepository<AirportEntity,String> {
 
-    boolean existsByCode(String code);
 
-    void deleteByCode(String code);
+    AirportEntity getByCode(String code);
 }

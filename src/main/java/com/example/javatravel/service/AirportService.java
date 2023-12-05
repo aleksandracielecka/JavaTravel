@@ -34,12 +34,18 @@ public class AirportService {
 
     @Transactional
     public void deleteAirport(String code) {
-        if (!airportRepository.existsByCode(code)) {
+        if (!airportRepository.existsById(code)) {
             throw new EntityNotFoundException("Airport not found" + code);
         }
-        airportRepository.deleteByCode(code);
+        airportRepository.deleteById(code);
     }
 
 
+    public AirportEntity getAirportCode(String code) {
+        return airportRepository.getByCode(code);
+
+//            return airportRepository.getReferenceById(code);
+            //czy to jest dobra metoda??
+    }
 }
 
