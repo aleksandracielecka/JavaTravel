@@ -10,6 +10,7 @@
 <body>
 <h1> JAVA TRAVEL</h1>
 
+<form th:action="@{/filter_trips}" method="get">
 
 <h2> Wybierz kierunki podróży</h2>
 <div th:each="l : ${locations}">
@@ -20,10 +21,22 @@
 
 <label for="startDate">Wybierz datę rozpoczęcia wycieczki:</label>
 <input type="date" id="startDate" name="startDate">
-<p></p>
+    <br/>
 <label for="endDate">Wybierz datę zakończenia wycieczki:</label>
 <input type="date" id="endDate" name="endDate">
-<p> </p>
+    <br/>
+    <button type="submit">Filtruj</button>
+</form>>
+
+
+
+<h2>Wyniki filtrowania</h2>
+<div th:if="${filterTrips != null}">
+    <ul>
+        <li th:each="trip : ${filterTrips}" th:text="${trip.getId()} + ' - ' + ${trip.getHotel()}"></li>
+    </ul>
+    <!-- Wyświetlenie wyników filtrowania -->
+</div>
 
 </body>
 </html>

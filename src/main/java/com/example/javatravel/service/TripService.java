@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -43,5 +45,22 @@ public class TripService {
         TripEntity addTrip = tripRepository.save(tripEntity);
 
         return TripMapper.toTripDto(addTrip);
+    }
+
+    public List<TripEntity> tripFilter(List<Long> selectedLocations, LocalDate startDate, LocalDate endDate) {
+        List<TripEntity> allTrips = tripRepository.findAll();
+        List<TripEntity> filterTrips = new ArrayList<>();
+        for(TripEntity trip: allTrips){
+            if (selectedLocations.contains(trip.getAirportTo().getLocation())){
+                LocalDate tripStartDate = trip.getStartDate();
+                LocalDate tripEndDate = trip.getEndDate();
+                if((startDate == null || tripStartDate.isEqual(startDate) || tripStartDate.isAfter(startDate) &&
+                        (endDate == null || tripEndDate.isEqual(endDate) || tripEndDate.isAfter(endDate)))){
+                    filterTrips.add(trip);
+
+                }
+            }
+        }
+       return filterTrips;
     }
 }
