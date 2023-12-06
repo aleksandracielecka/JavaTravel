@@ -55,7 +55,7 @@ public class MainPageController {
 
         // Przekazanie wyników filtrowania do szablonu Thymeleaf
         model.addAttribute("filterTrips", filterTrips);
-        return "mainPage"; // Zwrócenie widoku z wynikami filtrowania
+        return "trips"; // Zwrócenie widoku z wynikami filtrowania
     }
 
 

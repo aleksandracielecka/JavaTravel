@@ -12,28 +12,34 @@
 
 <form th:action="@{/filter_trips}" method="get">
 
-<h2> Wybierz kierunki podróży</h2>
-<div th:each="l : ${locations}">
-    <input type="checkbox" th:id="'location_' + ${l.getId()}" th:name="location" th:value="${l.getId()}"/>
-    <label th:for="'location_' + ${l.getId()}" th:text="${l.getCountry()+' '+l.getCity}"></label>
-    <br/>
-</div>
+    <h2> Wybierz kierunki podróży</h2>
+    <div th:each="l : ${locations}">
+        <input type="checkbox" th:id="'location_' + ${l.getId()}" th:name="location" th:value="${l.getId()}"/>
+        <label th:for="'location_' + ${l.getId()}" th:text="${l.getCountry()+' '+l.getCity}"></label>
+        <br/>
+    </div>
 
-<label for="startDate">Wybierz datę rozpoczęcia wycieczki:</label>
-<input type="date" id="startDate" name="startDate">
+    <label for="startDate">Wybierz datę rozpoczęcia wycieczki:</label>
+    <input type="date" id="startDate" name="startDate">
     <br/>
-<label for="endDate">Wybierz datę zakończenia wycieczki:</label>
-<input type="date" id="endDate" name="endDate">
+    <label for="endDate">Wybierz datę zakończenia wycieczki:</label>
+    <input type="date" id="endDate" name="endDate">
     <br/>
     <button type="submit">Filtruj</button>
-</form>>
-
+</form>
+>
 
 
 <h2>Wyniki filtrowania</h2>
 <div th:if="${filterTrips != null}">
     <ul>
-        <li th:each="trip : ${filterTrips}" th:text="${trip.getId()} + ' - ' + ${trip.getHotel()}"></li>
+        <li th:each="trip : ${filterTrips}"
+            th:text="${trip.getId()} + ' - ' + ${trip}"></li>
+<!--        <li th:each="trip : ${filterTrips}"-->
+<!--            th:text="${trip.getId()} + ' - ' + ${trip.getHotel().getLocation()}+' - '+-->
+<!--            ${trip.getAirportFrom()}+' - '+ ${trip.getAirportTo()}+' - '+-->
+<!--             ${trip.getHotel().getName()}+' - '+ ${trip.getStartDate()}+' - '+-->
+<!--             ${trip.getEndDate()}"></li>-->
     </ul>
     <!-- Wyświetlenie wyników filtrowania -->
 </div>

@@ -3,11 +3,13 @@ package com.example.javatravel.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.repository.cdi.Eager;
 
 @Entity
 @Getter
 @Setter
+@ToString
 public class PurchaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

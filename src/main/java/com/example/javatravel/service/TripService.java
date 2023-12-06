@@ -51,7 +51,7 @@ public class TripService {
         List<TripEntity> allTrips = tripRepository.findAll();
         List<TripEntity> filterTrips = new ArrayList<>();
         for(TripEntity trip: allTrips){
-            if (selectedLocations.contains(trip.getAirportTo().getLocation())){
+            if (selectedLocations.contains(trip.getAirportTo().getLocation().getId())){
                 LocalDate tripStartDate = trip.getStartDate();
                 LocalDate tripEndDate = trip.getEndDate();
                 if((startDate == null || tripStartDate.isEqual(startDate) || tripStartDate.isAfter(startDate) &&
