@@ -1,33 +1,33 @@
 package com.example.javatravel.controller;
 
-import com.example.javatravel.dto.PurchaseDto;
+import com.example.javatravel.entity.PurchaseEntity;
 import com.example.javatravel.entity.TripEntity;
 import com.example.javatravel.service.PurchaseService;
-import com.example.javatravel.service.TripService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+import java.util.List;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping(value = "/purchases", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class PurchaseController {
-    private PurchaseService purchaseService;
-    private TripService tripService;
 
-    @Autowired
-    public PurchaseController(PurchaseService purchaseService){this.purchaseService = purchaseService;}
+    private final PurchaseService purchaseService;
 
-    @PostMapping("/purchase")
-    public String createPurchase (@RequestParam("selectedTripId") Long selectedTripId){
-
-        TripEntity selectedTrip = tripService.getTripById(selectedTripId);
-
-    if (selectedTrip !=null){
-        PurchaseDto newPurchaseDto = new PurchaseDto();
-        newPurchaseDto.setTrip(selectedTrip);
-
-    }
-    return "redirect:/purchase";
+    @GetMapping
+    public ResponseEntity<List<PurchaseEntity>> getPurchaseList(){
+        try {
+            List<PurchaseEntity> purchases = purchaseService.getPurchaseList();
+            return ResponseEntity.ok(purchases);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
 

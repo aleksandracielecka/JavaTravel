@@ -61,6 +61,16 @@ VALUES
     (4000,500),
     (7000,1000),
     (3000,400);
+
+INSERT INTO purchase_entity (adult_number,child_number)
+VALUES
+
+    (3,1),
+    (3,1);
+
+
+
+
 --
 -- INSERT INTO location_entity (continent, country, city,address)
 -- VALUES
