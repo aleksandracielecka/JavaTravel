@@ -27,18 +27,6 @@
     <br/>
     <button type="submit">Filtruj</button>
 </form>
-
-
-<h2>Wyniki filtrowania</h2>
-<div th:if="${filterTrips != null}">
-    <ul>
-        <li th:each="trip : ${filterTrips}">
-            <a th:href="@{'/trip_details/'+${trip.getId()}}" th:text="${trip.getId()} + ' - ' + ${trip.getHotel().getName()}"></a>
-        </li>
-    </ul>
-    <!-- Wyświetlenie wyników filtrowania -->
-</div>
-
 </body>
 </html>
 

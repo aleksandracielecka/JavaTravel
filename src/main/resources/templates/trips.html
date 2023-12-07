@@ -9,18 +9,19 @@
 </head>
 <body>
 
-<h2>Wyniki filtrowania</h2>
-<div th:if="${filterTrips != null}">
+<div th:if="${filterTrips.size()>0}">
+    <h2>Wyniki filtrowania</h2>
     <ul>
-        <li th:each="trip : ${filterTrips}"
-            th:text="${trip.getId()} + ' - ' + ${trip}"></li>
-        <!--        <li th:each="trip : ${filterTrips}"-->
-        <!--            th:text="${trip.getId()} + ' - ' + ${trip.getHotel().getLocation()}+' - '+-->
-        <!--            ${trip.getAirportFrom()}+' - '+ ${trip.getAirportTo()}+' - '+-->
-        <!--             ${trip.getHotel().getName()}+' - '+ ${trip.getStartDate()}+' - '+-->
-        <!--             ${trip.getEndDate()}"></li>-->
+        <li th:each="trip : ${filterTrips}">
+            <a th:href="@{'/trip_details/'+${trip.getId()}}" th:text="${trip.getId()} + ' - ' + ${trip.getHotel().getName()}"></a>
+        </li>
     </ul>
     <!-- Wyświetlenie wyników filtrowania -->
+</div>
+<div th:if="${filterTrips.size()==0}">
+    <h2>Brak wycieczek o podanych kryteriach</h2>
+    <a href="/main_page">Powrot</a>
+
 </div>
 </body>
 </html>

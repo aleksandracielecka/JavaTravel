@@ -9,9 +9,20 @@
 <h1> Szczegóły wycieczki</h1>
 
 <label>Id wycieczki:</label>
-<p th:text="${trip.getId()}">test</p>
+<p th:text="${trip.getId()}"></p>
 <label>Nazwa hotelu:</label>
-<p th:text="${trip.getHotel().getName()}">testhotel</p>
-
+<p th:text="${trip.getHotel().getName()}"></p>
+<label>Lotnisko wylotu:</label>
+<p th:text="${trip.getAirportFrom().getCode()} +' '+${trip.getAirportFrom().getName()} +' '+${trip.getAirportFrom().getLocation().getCity()}"></p>
+<label>Lotnisko powrotu:</label>
+<p th:text="${trip.getAirportTo().getCode()} +' '+${trip.getAirportTo().getName()} +' '+${trip.getAirportTo().getLocation().getCity()}"></p>
+<label>Data rozpoczęcia wycieczki:</label>
+<p th:text="${trip.getStartDate()}"></p>
+<label>Data zakończenia wycieczki:</label>
+<p th:text="${trip.getEndDate()}"></p>
+<label>Cena:</label>
+<ul>
+    <li th:each="price : ${trip.getPrices()}" th:text="${price.getPricePerDay()}"></li>
+</ul>
 </body>
 </html>
