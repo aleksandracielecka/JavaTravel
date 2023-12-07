@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> Szczegóły wycieczki</h1>
+
+<label>Id wycieczki:</label>
+<p th:text="${trip.getId()}">test</p>
+<label>Nazwa hotelu:</label>
+<p th:text="${trip.getHotel().getName()}">testhotel</p>
+
+</body>
+</html>

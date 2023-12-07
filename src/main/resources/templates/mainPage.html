@@ -27,19 +27,14 @@
     <br/>
     <button type="submit">Filtruj</button>
 </form>
->
 
 
 <h2>Wyniki filtrowania</h2>
 <div th:if="${filterTrips != null}">
     <ul>
-        <li th:each="trip : ${filterTrips}"
-            th:text="${trip.getId()} + ' - ' + ${trip}"></li>
-<!--        <li th:each="trip : ${filterTrips}"-->
-<!--            th:text="${trip.getId()} + ' - ' + ${trip.getHotel().getLocation()}+' - '+-->
-<!--            ${trip.getAirportFrom()}+' - '+ ${trip.getAirportTo()}+' - '+-->
-<!--             ${trip.getHotel().getName()}+' - '+ ${trip.getStartDate()}+' - '+-->
-<!--             ${trip.getEndDate()}"></li>-->
+        <li th:each="trip : ${filterTrips}">
+            <a th:href="@{'/trip_details/'+${trip.getId()}}" th:text="${trip.getId()} + ' - ' + ${trip.getHotel().getName()}"></a>
+        </li>
     </ul>
     <!-- Wyświetlenie wyników filtrowania -->
 </div>
