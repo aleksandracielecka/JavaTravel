@@ -28,18 +28,21 @@ public class NewPurchaseController {
         model.addAttribute("selectedTrip", trip);
         return "/purchase";
     }
-//    @PostMapping("/purchase")
-//    public String createPurchase (@RequestParam("selectedTripId") Long selectedTripId){
-//
-//        TripEntity selectedTrip = tripService.getTripById(selectedTripId);
-//
-//    if (selectedTrip !=null){
-//        PurchaseDto newPurchaseDto = new PurchaseDto();
-//        newPurchaseDto.setTrip(selectedTrip);
-//
-//    }
-//    return "redirect:/purchase";
-//    }
+    @PostMapping("/purchase")
+    public String createPurchase (@RequestParam("selectedTripId") Long selectedTripId,
+                                  @RequestParam("adultNumber") Integer adultNumber,
+                                  @RequestParam("childNumber") Integer childNumber){
+
+        TripEntity selectedTrip = tripService.getTripById(selectedTripId);
+
+    if (selectedTrip !=null){
+        PurchaseDto newPurchaseDto = new PurchaseDto();
+        newPurchaseDto.setTrip(selectedTrip);
+        newPurchaseDto.setAdultNumber(adultNumber);
+        newPurchaseDto.setChildNumber(childNumber);
+    }
+    return "redirect:/purchase";
+    }
 
 
 }

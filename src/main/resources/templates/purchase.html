@@ -8,24 +8,38 @@
 
 <h1> Uzupełnij szczegóły wycieczki</h1>
 
-<p th:text="${selectedTrip}"></p>
-
-
+<label>Id wycieczki:</label>
+<p th:text="${selectedTrip.getId()}"></p>
+<label>Nazwa hotelu:</label>
+<p th:text="${selectedTrip.getHotel().getName()}"></p>
+<label>Lotnisko wylotu:</label>
+<p th:text="${selectedTrip.getAirportFrom().getCode()} +' '+${selectedTrip.getAirportFrom().getName()} +' '+${selectedTrip.getAirportFrom().getLocation().getCity()}"></p>
+<label>Lotnisko powrotu:</label>
+<p th:text="${selectedTrip.getAirportTo().getCode()} +' '+${selectedTrip.getAirportTo().getName()} +' '+${selectedTrip.getAirportTo().getLocation().getCity()}"></p>
+<label>Data rozpoczęcia wycieczki:</label>
+<p th:text="${selectedTrip.getStartDate()}"></p>
+<label>Data zakończenia wycieczki:</label>
+<p th:text="${selectedTrip.getEndDate()}"></p>
+<label>Cena podstawowa:</label>
+<ul>
+    <li th:each="price : ${selectedTrip.getPrices()}" th:text="${price.getPricePerDay()}"></li>
+</ul>
 
 <!--</select>-->
 
 
 
-<!--<form th:action="@{/purchase}" method="post">-->
+<form th:action="@{/purchase(selectedTripId=${selectedTrip.id})}" method="post">
 
 <!--&lt;!&ndash;    <input type="number" id="selectedTripId" name="selectedTrip" th:value="${selectedTripId}" >&ndash;&gt;-->
 
-<!--&lt;!&ndash;    <label for="adultNumber">Wybierz liczbę osób dorosłych (od 1 do 20):</label>&ndash;&gt;-->
-<!--&lt;!&ndash;    <input type="number" id="adultNumber" name="maxAdultNumber" min="1" max="20">&ndash;&gt;-->
-<!--&lt;!&ndash;    <p> </p>&ndash;&gt;-->
-<!--&lt;!&ndash;    <label for="childNumber">Wybierz liczbę dzieci (od 0 do 10):</label>&ndash;&gt;-->
-<!--&lt;!&ndash;    <input type="number" id="childNumber" name="maxChildNumber" min="0" max="10">&ndash;&gt;-->
+<label for="adultNumber">Wybierz liczbę osób dorosłych (od 1 do 20):</label>
+<input type="number" id="adultNumber" name="adultNumber" min="1" max="20">
+<label for="childNumber">Wybierz liczbę dzieci (od 0 do 10):</label>
+<input type="number" id="childNumber" name="childNumber" min="0" max="10">
 
+    <button type="submit">Kup wycieczkę</button>
+</form>
 <!--</form>-->
 
 </body>
