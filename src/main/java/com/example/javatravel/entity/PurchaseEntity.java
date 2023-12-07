@@ -15,10 +15,10 @@ public class PurchaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "adult number",nullable = false)
+    @Column(name = "adult_number",nullable = false)
     private int adultNumber;
 
-    @Column(name = "child number",nullable = false)
+    @Column(name = "child_number",nullable = false)
     private int childNumber;
 
     @OneToOne
