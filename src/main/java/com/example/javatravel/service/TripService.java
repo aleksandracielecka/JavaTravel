@@ -63,4 +63,7 @@ public class TripService {
         }
        return filterTrips;
     }
+    public TripEntity getTripById(Long id) {
+        return tripRepository.findById(id).get();
+    }
 }
