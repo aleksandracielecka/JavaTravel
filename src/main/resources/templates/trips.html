@@ -20,8 +20,8 @@
 </div>
 <div th:if="${filterTrips.size()==0}">
     <h2>Brak wycieczek o podanych kryteriach</h2>
-    <a href="/main_page">Powrot</a>
-
 </div>
+
+<a th:href="'javascript:history.go(-1)'" >Powrót</a>
 </body>
 </html>

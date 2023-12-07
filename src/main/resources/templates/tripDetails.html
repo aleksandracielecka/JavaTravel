@@ -24,5 +24,9 @@
 <ul>
     <li th:each="price : ${trip.getPrices()}" th:text="${price.getPricePerDay()}"></li>
 </ul>
+<form th:action="@{/purchase}" method="get">
+    <button type="submit">Kup</button>
+</form>
+<a th:href="'javascript:history.go(-1)'" >Powrót</a>
 </body>
 </html>
