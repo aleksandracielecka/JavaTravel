@@ -21,7 +21,8 @@ public class PurchaseEntity {
     @Column(name = "child_number",nullable = false)
     private int childNumber;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "trip_id")
     private TripEntity trip;
 
     @OneToOne

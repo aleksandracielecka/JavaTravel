@@ -29,10 +29,10 @@
 
 
 
-<form th:action="@{/purchase(selectedTripId=${selectedTrip.id})}" method="post">
+<form th:action="@{/purchase}" method="post">
 
 <!--&lt;!&ndash;    <input type="number" id="selectedTripId" name="selectedTrip" th:value="${selectedTripId}" >&ndash;&gt;-->
-
+<input type="hidden" name="selectedTripId" th:value="${selectedTrip.id}" />
 <label for="adultNumber">Wybierz liczbę osób dorosłych (od 1 do 20):</label>
 <input type="number" id="adultNumber" name="adultNumber" min="1" max="20">
 <label for="childNumber">Wybierz liczbę dzieci (od 0 do 10):</label>
@@ -40,7 +40,6 @@
 
     <button type="submit">Kup wycieczkę</button>
 </form>
-<!--</form>-->
 
 </body>
 </html>

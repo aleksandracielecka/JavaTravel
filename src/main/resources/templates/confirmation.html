@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Wycieczka Kupiona</h1>
+
+<label>Id zakupu:</label>
+<p th:text="${purchasedTrip.getId()}"></p>
+<label>Nazwa hotelu:</label>
+<p th:text="${purchasedTrip.getTrip().getHotel().getName()}"></p>
+<!--<label>Lotnisko wylotu:</label>-->
+<!--<p th:text="${selectedTrip.getAirportFrom().getCode()} +' '+${selectedTrip.getAirportFrom().getName()} +' '+${selectedTrip.getAirportFrom().getLocation().getCity()}"></p>-->
+<!--<label>Lotnisko powrotu:</label>-->
+<!--<p th:text="${selectedTrip.getAirportTo().getCode()} +' '+${selectedTrip.getAirportTo().getName()} +' '+${selectedTrip.getAirportTo().getLocation().getCity()}"></p>-->
+<!--<label>Data rozpoczęcia wycieczki:</label>-->
+<!--<p th:text="${selectedTrip.getStartDate()}"></p>-->
+<!--<label>Data zakończenia wycieczki:</label>-->
+<!--<p th:text="${selectedTrip.getEndDate()}"></p>-->
+<!--<label>Cena podstawowa:</label>-->
+<!--<ul>-->
+<!--    <li th:each="price : ${selectedTrip.getPrices()}" th:text="${price.getPricePerDay()}"></li>-->
+<!--</ul>-->
+
+<!--</select>-->
+
+</body>
+</html>
