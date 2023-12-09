@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +19,10 @@ public class StandardService {
     }
 
     public StandardEntity getStandardByCode(String code) {
-        return standardRepository.getReferenceById(code);
+        return standardRepository.findById(code).orElseThrow(() -> new RuntimeException("Nie znaleziono standardu!"));
+    }
+
+    public StandardEntity getStandardByStandardType(StandardEntity.StandardType standardType) {
+        return standardRepository.findByStandardType(standardType);
     }
 }
