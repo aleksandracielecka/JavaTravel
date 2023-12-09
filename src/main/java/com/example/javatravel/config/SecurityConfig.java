@@ -22,19 +22,22 @@ public class SecurityConfig {
         http.csrf(c-> c.disable())
                 .cors(c->c.disable())
                 .authorizeHttpRequests((authorize) ->
-                        authorize.anyRequest().permitAll());
-                      //  authorize.anyRequest().authenticated()
-//                ).formLogin(
-//                        form -> form
-//                                .loginPage("/login")
-//                                .loginProcessingUrl("/login")
-//                                .defaultSuccessUrl("/")
-//                                .permitAll()
-//                ).logout(
-//                        logout -> logout
-//                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                                .permitAll()
-//                );
+         //               authorize.anyRequest().permitAll());
+          //              authorize.anyRequest().authenticated()
+                                authorize
+                                        .requestMatchers(new AntPathRequestMatcher("/main_page")).hasRole("CLIENT")
+                                        .anyRequest().hasRole("ADMIN")
+                ).formLogin(
+                        form -> form
+                                .loginPage("/login")
+                                .loginProcessingUrl("/login")
+                                .defaultSuccessUrl("/")
+                                .permitAll()
+                ).logout(
+                        logout -> logout
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .permitAll()
+                );
         return http.build();
     }
 

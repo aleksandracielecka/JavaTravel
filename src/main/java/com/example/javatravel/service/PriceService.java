@@ -2,6 +2,7 @@ package com.example.javatravel.service;
 
 import com.example.javatravel.dto.PriceDto;
 import com.example.javatravel.entity.PriceEntity;
+import com.example.javatravel.entity.PurchaseEntity;
 import com.example.javatravel.repository.PriceRepository;
 import com.example.javatravel.utils.mapper.PriceMapper;
 import jakarta.persistence.EntityNotFoundException;
@@ -38,5 +39,9 @@ public class PriceService {
         }
         priceRepository.deleteById(id);
     }
+
+//    public int finalPrice(PriceEntity price, PurchaseEntity adult){
+//
+//    }
 
 }

@@ -23,6 +23,9 @@ public class PriceEntity {
     @OneToOne
     private StandardEntity standard;
 
+//    @ManyToOne
+//    private TripEntity trip;
+
 
 
 }
