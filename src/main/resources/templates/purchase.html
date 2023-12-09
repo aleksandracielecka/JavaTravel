@@ -38,7 +38,16 @@
 <label for="childNumber">Wybierz liczbę dzieci (od 0 do 10):</label>
 <input type="number" id="childNumber" name="childNumber" min="0" max="10">
 
-    <button type="submit">Kup wycieczkę</button>
+    <select name="standard">
+        <option value="">Wybierz standard</option>
+        <option th:each="s: ${standards}" th:value="${s.getStandardType()}" th:text="${s.getStandardType()}">
+  </option>
+    </select>
+
+    <label>Cena całkowita:</label>
+    <p th:text="${finalPrice}"></p>
+
+    <button type = "submit" >Kup wycieczkę</button>
 </form>
 
 </body>

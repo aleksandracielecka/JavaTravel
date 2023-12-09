@@ -22,11 +22,13 @@ public class SecurityConfig {
         http.csrf(c-> c.disable())
                 .cors(c->c.disable())
                 .authorizeHttpRequests((authorize) ->
-         //               authorize.anyRequest().permitAll());
-          //              authorize.anyRequest().authenticated()
-                                authorize
-                                        .requestMatchers(new AntPathRequestMatcher("/main_page")).hasRole("CLIENT")
-                                        .anyRequest().hasRole("ADMIN")
+                  //      authorize.anyRequest().permitAll());
+                        authorize.anyRequest().authenticated()
+//                                authorize
+//                                        .requestMatchers(new AntPathRequestMatcher("/main_page")).hasRole("CLIENT")
+//                                        .requestMatchers(new AntPathRequestMatcher("/")).hasRole("CLIENT")
+//
+//                                        .anyRequest().hasRole("ADMIN")
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
