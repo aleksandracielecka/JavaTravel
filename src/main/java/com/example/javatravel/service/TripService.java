@@ -64,6 +64,6 @@ public class TripService {
        return filterTrips;
     }
     public TripEntity getTripById(Long id) {
-        return tripRepository.findById(id).get();
+        return tripRepository.findById(id).orElseThrow(()-> new RuntimeException("Nie znaleziono wycieczki"));
     }
 }

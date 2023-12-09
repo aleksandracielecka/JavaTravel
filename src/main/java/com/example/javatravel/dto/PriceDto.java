@@ -12,4 +12,5 @@ public class PriceDto {
     private Long pricePerDay;
     private Long flightPrice;
     private StandardEntity standard;
+
 }
