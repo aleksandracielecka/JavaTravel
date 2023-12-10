@@ -11,6 +11,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class PriceEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,12 +25,6 @@ public class PriceEntity {
    @Column
     @Enumerated(EnumType.STRING)
     private StandardType standardType;
-
-
-
-//    @ManyToOne
-//    private TripEntity trip;
-
 
 
 }

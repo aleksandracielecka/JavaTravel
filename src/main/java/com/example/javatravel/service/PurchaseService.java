@@ -33,7 +33,5 @@ public class PurchaseService {
         selectedTrip.setMaxAdultNumber(selectedTrip.getMaxAdultNumber()-purchaseDto.getAdultNumber());
         selectedTrip.setMaxChildNumber(selectedTrip.getMaxChildNumber()-purchaseDto.getChildNumber());
         tripRepository.save(selectedTrip);
-//        PurchaseDto dto = PurchaseMapper.toPurchaseDto(savedPurchasedEntity);
-//        return dto;
     }
 }

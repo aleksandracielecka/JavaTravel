@@ -9,8 +9,5 @@ import java.util.List;
 
 @Repository
 public interface LocationRepository extends JpaRepository<LocationEntity, Long> {
-//    List<LocationEntity> findAll(String color);
-//
-//    @Query("SELECT c FROM CarModel c WHERE LOWER(c.color) =LOWER(:colorParam)")
-//    List<CarModel> listCarsByColor(@Param("colorParam") String colorParam);
+
 }

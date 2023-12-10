@@ -8,6 +8,7 @@ import com.example.javatravel.service.AirportService;
 import com.example.javatravel.service.HotelService;
 import com.example.javatravel.service.LocationService;
 import com.example.javatravel.service.TripService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,23 +20,16 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class MainPageController {
 
-    private LocationService locationService;
-    private TripService tripService;
+    private final LocationService locationService;
+    private final TripService tripService;
 
-    @Autowired
-    public MainPageController( LocationService locationService, TripService tripService) {
-
-        this.locationService = locationService;
-        this.tripService = tripService;
-    }
     @GetMapping("/main_page")
     public String getWelcome(Model model) {
         List<LocationDto> locations = locationService.getLocationList();
         model.addAttribute("locations", locations);
-
 
         return "mainPage";
     }
@@ -47,15 +41,11 @@ public class MainPageController {
                                          @RequestParam(value = "startDate", required = false) LocalDate startDate,
                                          @RequestParam(value = "endDate", required = false) LocalDate endDate,
                                          Model model) {
-//        List<LocationDto> locations = locationService.getLocationList();
-//        model.addAttribute("locations", locations);
 
-        // Tutaj można użyć selectedLocations, startDate i endDate do filtrowania wycieczek z bazy danych
         List<TripEntity> filterTrips = tripService.tripFilter(selectedLocations, startDate, endDate);
 
-        // Przekazanie wyników filtrowania do szablonu Thymeleaf
         model.addAttribute("filterTrips", filterTrips);
-        return "trips"; // Zwrócenie widoku z wynikami filtrowania
+        return "trips";
     }
 
 

@@ -14,6 +14,7 @@ import com.example.javatravel.service.HotelService;
 import com.example.javatravel.service.LocationService;
 import com.example.javatravel.service.TripService;
 import com.example.javatravel.utils.mapper.TripMapper;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.origin.TextResourceOrigin;
@@ -29,21 +30,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class NewTripController {
 
-    private TripService tripService;
-    private HotelService hotelService;
-    private LocationService locationService;
-    private AirportService airportService;
-
-    @Autowired
-    public NewTripController(TripService tripService, HotelService hotelService, LocationService locationService, AirportService airportService) {
-        this.tripService = tripService;
-        this.hotelService = hotelService;
-        this.locationService = locationService;
-        this.airportService = airportService;
-    }
+    private final TripService tripService;
+    private  final HotelService hotelService;
+    private final LocationService locationService;
+    private final AirportService airportService;
 
     @GetMapping("/create_trip")
     public String getWelcome(Model model) {

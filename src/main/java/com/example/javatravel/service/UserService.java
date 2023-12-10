@@ -31,6 +31,7 @@ public class UserService implements UserDetailsService {
         return new User(userEmail, user.getPassword(), authorities);
     }
     private UserEntity findByEmail(String email) {
-        return userRepo.findByEmail(email).orElseThrow(()-> new RuntimeException("Couldn't find user by email"));
+        return userRepo.findByEmail(email)
+                .orElseThrow(()-> new RuntimeException("Couldn't find user by email"));
     }
 }

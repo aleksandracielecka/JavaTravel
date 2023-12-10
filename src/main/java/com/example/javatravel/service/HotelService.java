@@ -17,32 +17,32 @@ import java.util.Optional;
 public class HotelService {
     private final HotelRepository hotelRepository;
 
-    public List<HotelEntity> getHotelList(){
+    public List<HotelEntity> getHotelList() {
+
         return hotelRepository.findAll();
     }
 
-    public HotelDto addHotel(HotelDto hotelDto){
+    public HotelDto addHotel(HotelDto hotelDto) {
         HotelEntity hotelEntity = HotelMapper.toHotelEntity(hotelDto);
         HotelEntity addHotel = hotelRepository.save(hotelEntity);
         return HotelMapper.toHotelDto(addHotel);
     }
 
-    public HotelEntity updateHotel(HotelEntity hotel){
+    public HotelEntity updateHotel(HotelEntity hotel) {
         return hotelRepository.save(hotel);
     }
 
     @Transactional
-    public void deleteHotel(Long id){
-        if (!hotelRepository.existsById(id)){
-            throw new EntityNotFoundException("Hotel not found" + id);
+    public void deleteHotel(Long id) {
+        if (!hotelRepository.existsById(id)) {
+            throw new EntityNotFoundException("Nie znaleziono hotelu o id:" + id);
         }
         hotelRepository.deleteById(id);
     }
 
 
-
-
     public HotelEntity getHotelById(Long selectedHotelId) {
+
         return hotelRepository.getReferenceById(selectedHotelId);
     }
 }

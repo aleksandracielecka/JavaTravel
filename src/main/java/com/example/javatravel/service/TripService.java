@@ -37,7 +37,7 @@ public class TripService {
     }
 
     public TripDto addTrip(TripDto tripDto) {
-
+        //toDo
         //validate()
         //tripValidationException extens RuntimeException
         //"nieprawidłowe daty.. sprawdź..."

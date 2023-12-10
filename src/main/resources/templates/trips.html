@@ -16,7 +16,7 @@
             <a th:href="@{'/trip_details/'+${trip.getId()}}" th:text="${trip.getId()} + ' - ' + ${trip.getHotel().getName()}"></a>
         </li>
     </ul>
-    <!-- Wyświetlenie wyników filtrowania -->
+
 </div>
 <div th:if="${filterTrips.size()==0}">
     <h2>Brak wycieczek o podanych kryteriach</h2>
