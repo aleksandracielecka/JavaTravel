@@ -1,5 +1,6 @@
 package com.example.javatravel.entity;
 
+import com.example.javatravel.entity.enums.StandardType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,8 +21,11 @@ public class PriceEntity {
     @Column(name = "flight_price" , nullable = false)
     private Long flightPrice;
 
-    @OneToOne
-    private StandardEntity standard;
+   @Column
+    @Enumerated(EnumType.STRING)
+    private StandardType standardType;
+
+
 
 //    @ManyToOne
 //    private TripEntity trip;

@@ -16,7 +16,7 @@ public class TripMapper {
         tripEntity.setHotel(tripDto.getHotel());
         tripEntity.setAirportFrom(tripDto.getAirportFrom());
         tripEntity.setAirportTo(tripDto.getAirportTo());
-        tripEntity.setPrices(tripDto.getPrices());
+        tripEntity.setPrice(tripDto.getPrice());
         return tripEntity;
     }
 
@@ -30,7 +30,7 @@ public class TripMapper {
         tripDto.setHotel(tripEntity.getHotel());
         tripDto.setAirportFrom(tripEntity.getAirportFrom());
         tripDto.setAirportTo(tripEntity.getAirportTo());
-        tripDto.setPrices(tripEntity.getPrices());
+        tripDto.setPrice(tripEntity.getPrice());
         return tripDto;
     }
 }

@@ -10,7 +10,7 @@ public class PriceMapper {
         priceEntity.setId(priceDto.getId());
         priceEntity.setPricePerDay(priceDto.getPricePerDay());
         priceEntity.setFlightPrice(priceDto.getFlightPrice());
-        priceEntity.setStandard(priceDto.getStandard());
+        priceEntity.setStandardType(priceDto.getStandard());
         return priceEntity;
     }
 
@@ -19,7 +19,7 @@ public class PriceMapper {
         priceDto.setId(priceEntity.getId());
         priceDto.setPricePerDay(priceEntity.getPricePerDay());
         priceDto.setFlightPrice(priceEntity.getFlightPrice());
-        priceDto.setStandard(priceEntity.getStandard());
+        priceDto.setStandard(priceEntity.getStandardType());
         return priceDto;
     }
 

@@ -6,7 +6,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -39,8 +38,8 @@ public class TripEntity {
     @OneToOne
     private AirportEntity airportTo;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "id")
-    private Set<PriceEntity> prices;
+    @OneToOne
+    private PriceEntity price;
 
 
 

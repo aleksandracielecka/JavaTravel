@@ -40,33 +40,27 @@ VALUES
     ('Sydney hotel','opisSydney',4,8);
 
 
-INSERT INTO standard_entity (standard_type)
+INSERT INTO price_entity (price_per_day,flight_price,standard_type)
 VALUES
-    ('OB'),
-    ('BB'),
-    ('HB'),
-    ('FB'),
-    ('AI');
+    (4000,500,'OB'),
+    (7000,1000,'OB'),
+    (3000,400,'OB');
 
-INSERT INTO trip_entity (start_date,end_date,max_adult_number,max_child_number,airport_from_code,airport_to_code,hotel_id)
+INSERT INTO trip_entity (start_date,end_date,max_adult_number,max_child_number,airport_from_code,airport_to_code,hotel_id,price_id)
 VALUES
-    ('2023-12-14','2023-12-16',20,10,'WRO','AGP',1),
-    ('2023-12-16','2023-12-18',9,5,'KRK','HRG',2);
+    ('2023-12-14','2023-12-16',20,10,'WRO','AGP',1,1),
+    ('2023-12-16','2023-12-18',9,5,'KRK','HRG',2,2);
 --     ('2023-12-20','2023-12-22',25,5,'WRO','AGP',1);
 
 
 
-INSERT INTO price_entity (price_per_day,flight_price)
-VALUES
-    (4000,500),
-    (7000,1000),
-    (3000,400);
 
-INSERT INTO purchase_entity (adult_number,child_number)
-VALUES
 
-    (3,1),
-    (3,1);
+-- INSERT INTO purchase_entity (adult_number,child_number)
+-- VALUES
+--
+--     (3,1),
+--     (3,1);
 
 
 
