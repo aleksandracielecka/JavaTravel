@@ -1,6 +1,6 @@
 package com.example.javatravel.dto;
 
-import com.example.javatravel.entity.StandardEntity;
+import com.example.javatravel.entity.enums.StandardType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +11,6 @@ public class PriceDto {
     private Long id;
     private Long pricePerDay;
     private Long flightPrice;
-    private StandardEntity standard;
+    private StandardType standard;
 
 }

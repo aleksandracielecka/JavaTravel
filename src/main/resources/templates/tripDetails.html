@@ -22,7 +22,7 @@
 <p th:text="${trip.getEndDate()}"></p>
 <label>Cena:</label>
 <ul>
-    <li th:each="price : ${trip.getPrices()}" th:text="${price.getPricePerDay()}"></li>
+    <li th:each="price : ${trip.getPrice()}" th:text="${price.getPricePerDay()}"></li>
 </ul>
 
 <form th:action="@{/purchase}" method="get">

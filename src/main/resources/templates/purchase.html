@@ -28,7 +28,7 @@
 <!--</select>-->
 
 
-<form th:action="@{/purchase}" method="post">
+<form th:action="@{/purchase}" method="post" th:object="${finalPrice}">
 
     <input type="hidden" name="selectedTripId" th:value="${selectedTrip.id}"/>
     <label for="adultNumber">Wybierz liczbę osób dorosłych (od 1 do 20):</label>
@@ -38,7 +38,7 @@
 
     <select name="standard">
         <option value="">Wybierz standard</option>
-        <option th:each="s: ${standards}" th:value="${s}" th:text="${s}">
+        <option th:each="standard: ${standards}" th:value="${standard}" th:text="${standard}">
         </option>
     </select>
 
