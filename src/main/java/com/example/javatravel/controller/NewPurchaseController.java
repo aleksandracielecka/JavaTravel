@@ -44,56 +44,34 @@ public class NewPurchaseController {
         return "/purchase";
     }
 
-    @PostMapping("/purchase")
-    public String createPurchase(@RequestParam("selectedTripId") Long selectedTripId,
-                                 @RequestParam("adultNumber") Integer adultNumber,
-                                 @RequestParam("childNumber") Integer childNumber,
-                                 @RequestParam("standard") StandardEntity.StandardType standardType,
-                                 Model model) {
-
-        TripEntity selectedTrip = tripService.getTripById(selectedTripId);
-         StandardEntity selectedStandard = standardService.getStandardByStandardType(standardType);
-
-        if (selectedTrip != null) {
-            PurchaseDto newPurchaseDto = new PurchaseDto();
-            newPurchaseDto.setTrip(selectedTrip);
-            newPurchaseDto.setAdultNumber(adultNumber);
-            newPurchaseDto.setChildNumber(childNumber);
-            newPurchaseDto.setStandard(selectedStandard);
-            PurchaseDto purchasedTrip = purchaseService.createPurchase(newPurchaseDto);
-
-            model.addAttribute("purchasedTrip", purchasedTrip);
-
-        }
-        return "confirmation";
-    }
 
     public BigDecimal getFinalPrice(@RequestParam("selectedTripId") Long selectedTripId,
                                     @RequestParam("adultNumber") Integer adultNumber,
                                     @RequestParam("childNumber") Integer childNumber,
-                                    @RequestParam("standard") StandardEntity.StandardType standardType) {
+//                                    @RequestParam("standard") StandardEntity.StandardType standardType) {
+                                    @RequestParam("standard") StandardEntity standardType) {
         //StandardEntity.StandardType standard = StandardEntity.StandardType.OB;
 //         StandardEntity.StandardType selectedStandard = standardService.getStandardByCode(standard).getStandardType();
-
+StandardEntity.StandardType selectedStandard = standardType.getStandardType();
         TripEntity selectedTrip = tripService.getTripById(selectedTripId);
 
         PriceEntity priceEntity = selectedTrip.getPrices()
                 .stream()
-                .filter(price -> price.getStandard().getStandardType().equals(standardType))
+                .filter(price -> price.getStandard() != null && price.getStandard().getStandardType().equals(selectedStandard))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Nie znaleziono standardu"));
         BigDecimal finalPrice = BigDecimal.ZERO;
         double priceByStandard = 0.0;
-        if (standardType.equals(StandardEntity.StandardType.BB)) {
+        if (selectedStandard.equals(StandardEntity.StandardType.BB)) {
             priceByStandard = 1.05;
         }
-        if (standardType.equals(StandardEntity.StandardType.HB)) {
+        if (selectedStandard.equals(StandardEntity.StandardType.HB)) {
             priceByStandard = 1.1;
         }
-        if (standardType.equals(StandardEntity.StandardType.FB)) {
+        if (selectedStandard.equals(StandardEntity.StandardType.FB)) {
             priceByStandard = 1.15;
         }
-        if (standardType.equals(StandardEntity.StandardType.AI)) {
+        if (selectedStandard.equals(StandardEntity.StandardType.AI)) {
             priceByStandard = 1.20;
         }
 
@@ -108,7 +86,6 @@ public class NewPurchaseController {
 
         return finalPrice;
 
-
 //        return
 //                finalPrice.add(BigDecimal.valueOf(priceEntity.getFlightPrice() * (adultNumber + childNumber)))
 //                        .add(BigDecimal.valueOf(priceEntity.getPricePerDay() * adultNumber))
@@ -116,12 +93,14 @@ public class NewPurchaseController {
 
     }
 
-    @PostMapping("/purchase_price")
+    @PostMapping("/purchase")
     public String displayPrice(@RequestParam("selectedTripId") Long selectedTripId,
                                @RequestParam("adultNumber") Integer adultNumber,
                                @RequestParam("childNumber") Integer childNumber,
-                               @RequestParam("standard") StandardEntity.StandardType standardType,
+                               @RequestParam("standard") StandardEntity standardType,
                                Model model) {
+
+//        StandardEntity.StandardType selectedStandard = standardType.getStandardType();
         BigDecimal finalPrice = getFinalPrice(selectedTripId, adultNumber, childNumber, standardType);
         model.addAttribute("finalPrice", finalPrice);
 
@@ -130,5 +109,44 @@ public class NewPurchaseController {
 //        List<StandardEntity> standards = standardService.getStandardList();
 //        model.addAttribute("standards", standards);
         return "/purchase";
+    }
+    @GetMapping("/final_price")
+    public String getPurchaseDetails(@RequestParam("selectedTripId") Long selectedTripId, Model model,
+                                     @RequestParam("adultNumber") Integer adultNumber,
+                              @RequestParam("childNumber") Integer childNumber,
+                                     @RequestParam("selectedStandard") StandardEntity.StandardType selectedStandard,
+                                     @RequestParam("finalPrice") BigDecimal finalPrice) {
+        TripEntity trip = tripService.getTripById(selectedTripId);
+        model.addAttribute("selectedTrip", trip);
+        List<StandardEntity> standards = standardService.getStandardList();
+        model.addAttribute("selectedStandard", selectedStandard);
+        model.addAttribute("adultNumber",adultNumber);
+        model.addAttribute("childNumber",childNumber);
+        model.addAttribute("finalPrice",finalPrice);
+
+        return "/finalPrice";
+    }
+    @PostMapping("/final_price")
+    public String createPurchase(@RequestParam("selectedTripId") Long selectedTripId,
+                                 @RequestParam("adultNumber") Integer adultNumber,
+                                 @RequestParam("childNumber") Integer childNumber,
+                                 @RequestParam("standard") StandardEntity.StandardType standardType,
+                                 Model model) {
+
+        TripEntity selectedTrip = tripService.getTripById(selectedTripId);
+        StandardEntity selectedStandard = standardService.getStandardByStandardType(standardType);
+
+        if (selectedTrip != null) {
+            PurchaseDto newPurchaseDto = new PurchaseDto();
+            newPurchaseDto.setTrip(selectedTrip);
+            newPurchaseDto.setAdultNumber(adultNumber);
+            newPurchaseDto.setChildNumber(childNumber);
+            newPurchaseDto.setStandard(selectedStandard);
+            PurchaseDto purchasedTrip = purchaseService.createPurchase(newPurchaseDto);
+
+            model.addAttribute("purchasedTrip", purchasedTrip);
+
+        }
+        return "confirmation";
     }
 }

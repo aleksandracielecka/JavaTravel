@@ -18,6 +18,8 @@ public class StandardService {
         return standardRepository.findAll();
     }
 
+
+
     public StandardEntity getStandardByCode(String code) {
         return standardRepository.findById(code).orElseThrow(() -> new RuntimeException("Nie znaleziono standardu!"));
     }
