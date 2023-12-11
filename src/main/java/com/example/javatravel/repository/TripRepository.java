@@ -10,5 +10,4 @@ import org.springframework.stereotype.Repository;
 public interface TripRepository extends JpaRepository <TripEntity, Long> {
 
 
-
 }

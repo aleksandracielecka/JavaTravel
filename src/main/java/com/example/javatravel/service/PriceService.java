@@ -40,8 +40,5 @@ public class PriceService {
         priceRepository.deleteById(id);
     }
 
-//    public int finalPrice(PriceEntity price, PurchaseEntity adult){
-//
-//    }
 
 }

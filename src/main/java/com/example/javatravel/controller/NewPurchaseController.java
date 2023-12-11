@@ -1,7 +1,6 @@
 package com.example.javatravel.controller;
 
 import com.example.javatravel.dto.FinalPriceDto;
-import com.example.javatravel.dto.FinalPurchaseDto;
 import com.example.javatravel.dto.PurchaseDto;
 import com.example.javatravel.entity.PriceEntity;
 import com.example.javatravel.entity.TripEntity;
@@ -37,12 +36,8 @@ public class NewPurchaseController {
     }
 
 
-    public BigDecimal getFinalPrice(Long selectedTripId,
-                                    Integer adultNumber,
-                                    Integer childNumber,
-                                    StandardType standardType) {
-        //StandardType standard = StandardType.OB;
-//         StandardType selectedStandard = standardService.getStandardByCode(standard).getStandardType();
+    public BigDecimal getFinalPrice(Long selectedTripId, Integer adultNumber,
+                                    Integer childNumber, StandardType standardType) {
 
         TripEntity selectedTrip = tripService.getTripById(selectedTripId);
 
@@ -73,12 +68,6 @@ public class NewPurchaseController {
                 .add(BigDecimal.valueOf(priceEntity.getPricePerDay() * childNumber * priceByStandard * tripDuration / 2));
 
         return finalPrice;
-
-//        return
-//                finalPrice.add(BigDecimal.valueOf(priceEntity.getFlightPrice() * (adultNumber + childNumber)))
-//                        .add(BigDecimal.valueOf(priceEntity.getPricePerDay() * adultNumber))
-//                        .add(BigDecimal.valueOf(priceEntity.getPricePerDay() * childNumber / 2));
-
     }
 
     @PostMapping("/purchase")
@@ -91,9 +80,9 @@ public class NewPurchaseController {
                 StandardType.valueOf(dto.getStandard()));
         model.addAttribute("finalPrice", finalPrice);
         model.addAttribute("selectedTrip", tripService.getTripById(dto.getSelectedTripId()));
-        model.addAttribute("adultNumber",dto.getAdultNumber());
-        model.addAttribute("childNumber",dto.getChildNumber());
-        model.addAttribute("standard",dto.getStandard());
+        model.addAttribute("adultNumber", dto.getAdultNumber());
+        model.addAttribute("childNumber", dto.getChildNumber());
+        model.addAttribute("standard", dto.getStandard());
 
         return "finalPrice";
     }
@@ -115,30 +104,15 @@ public class NewPurchaseController {
         return "finalPrice";
     }
 
-    //przez model atribute
+
     @PostMapping("/final_price")
-    public String createPurchase(@ModelAttribute ("finalPurchase") PurchaseDto dto,
-                                 Model model) {
+    public String createPurchase(@ModelAttribute("finalPurchase") PurchaseDto dto) {
 
-        TripEntity selectedTrip =tripService.getTripById(dto.getTripId());
-        int adultNumber = dto.getAdultNumber();
-        int childNumber = dto.getChildNumber();
+        String email = ((User) SecurityContextHolder.getContext().
+                getAuthentication().getPrincipal()).getUsername();
 
-//        StandardEntity selectedStandard = standardService.getStandardByStandardType(standardType);
+        purchaseService.createPurchase(dto, email);
 
-        String email = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
-
-//        if (selectedTrip != null) {
-//            PurchaseDto newPurchaseDto = new PurchaseDto();
-//            newPurchaseDto.setTrip(selectedTrip);
-//            newPurchaseDto.setAdultNumber(adultNumber);
-//            newPurchaseDto.setChildNumber(childNumber);
-
-          purchaseService.createPurchase(dto,email);
-
-
-
-//        }
         return "confirmation";
     }
 }

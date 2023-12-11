@@ -6,26 +6,7 @@
 </head>
 <body>
 
-<h1> Uzupełnij szczegóły wycieczki</h1>
-
-<!--<label>Id wycieczki:</label>-->
-<!--<p th:text="${selectedTrip.getId()}"></p>-->
-<!--<label>Nazwa hotelu:</label>-->
-<!--<p th:text="${selectedTrip.getHotel().getName()}"></p>-->
-<!--<label>Lotnisko wylotu:</label>-->
-<!--<p th:text="${selectedTrip.getAirportFrom().getCode()} +' '+${selectedTrip.getAirportFrom().getName()} +' '+${selectedTrip.getAirportFrom().getLocation().getCity()}"></p>-->
-<!--<label>Lotnisko powrotu:</label>-->
-<!--<p th:text="${selectedTrip.getAirportTo().getCode()} +' '+${selectedTrip.getAirportTo().getName()} +' '+${selectedTrip.getAirportTo().getLocation().getCity()}"></p>-->
-<!--<label>Data rozpoczęcia wycieczki:</label>-->
-<!--<p th:text="${selectedTrip.getStartDate()}"></p>-->
-<!--<label>Data zakończenia wycieczki:</label>-->
-<!--<p th:text="${selectedTrip.getEndDate()}"></p>-->
-<!--<label>Cena podstawowa:</label>-->
-<!--<ul>-->
-<!--    <li th:each="price : ${selectedTrip.getPrices()}" th:text="${price.getPricePerDay()}"></li>-->
-<!--</ul>-->
-
-<!--</select>-->
+<h1> Uzupełnij dane dotyczące Twojej wycieczki</h1>
 
 
 <form th:action="@{/purchase}" method="post" th:object="${finalPrice}">

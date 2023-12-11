@@ -44,13 +44,14 @@ INSERT INTO price_entity (price_per_day,flight_price,standard_type)
 VALUES
     (4000,500,'OB'),
     (7000,1000,'OB'),
-    (3000,400,'OB');
+    (3000,400,'OB'),
+    (1000,100,'OB');
 
 INSERT INTO trip_entity (start_date,end_date,max_adult_number,max_child_number,airport_from_code,airport_to_code,hotel_id,price_id)
 VALUES
     ('2023-12-14','2023-12-16',20,10,'WRO','AGP',1,1),
     ('2023-12-16','2023-12-18',9,5,'KRK','HRG',2,2);
---     ('2023-12-20','2023-12-22',25,5,'WRO','AGP',1);
+
 
 
 

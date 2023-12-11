@@ -44,8 +44,8 @@ public class AirportService {
     public AirportEntity getAirportCode(String code) {
         return airportRepository.getByCode(code);
 
-//            return airportRepository.getReferenceById(code);
-            //czy to jest dobra metoda??
     }
+
+
 }
 
