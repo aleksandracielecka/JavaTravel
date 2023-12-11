@@ -1,10 +1,12 @@
 package com.example.javatravel.controller;
 
+import com.example.javatravel.dto.NewTripDto;
 import com.example.javatravel.dto.TripDto;
 import com.example.javatravel.entity.TripEntity;
 import com.example.javatravel.service.TripService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping(value = "/trips", produces = {MediaType.APPLICATION_JSON_VALUE})
+@Slf4j
 public class TripController {
 
     private final TripService tripService;
@@ -31,23 +34,24 @@ public class TripController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<TripDto> addTrip(@RequestBody TripDto tripDto){
-        try {
-            TripDto addTrip = tripService.addTrip(tripDto);
-            return ResponseEntity.ok(addTrip);
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
 
-    @PutMapping
-    public ResponseEntity<TripEntity> editTrip(@RequestBody TripEntity trip) {
+
+
+    @PostMapping("/edit_trip")
+    public String editTrip(@ModelAttribute("updatedTrip") NewTripDto updatedTrip, Model model) {
         try {
-            TripEntity updateTrip = tripService.editTrip(trip);
-            return ResponseEntity.ok(updateTrip);
+            TripDto dto = new TripDto();
+            dto.setStartDate(updatedTrip.getStartDate());
+            dto.setEndDate(updatedTrip.getEndDate());
+            dto.setMaxAdultNumber(updatedTrip.getMaxAdultNumber());
+            dto.setMaxChildNumber(updatedTrip.getMaxChildNumber());
+            dto.setId(updatedTrip.getId());
+            TripEntity updateTripEntity = tripService.editTrip(dto);
+            log.info("TripEntity {} is updated", updateTripEntity);
+            return "redirect:/main_page";
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            log.error("Something went wrong", e);
+            return "/errors";
         }
     }
 
@@ -55,9 +59,16 @@ public class TripController {
     public String getEditTrip(@PathVariable("id") Long tripId, Model model) {
         // Pobieranie informacji o wycieczce do edycji na podstawie ID
         TripEntity trip = tripService.getTripById(tripId);
-
+        log.info("Loaded trip details for trip id={}", tripId);
+        NewTripDto tripDto = NewTripDto.builder()
+                .startDate(trip.getStartDate())
+                .endDate(trip.getEndDate())
+                .maxAdultNumber(trip.getMaxAdultNumber())
+                .maxChildNumber(trip.getMaxChildNumber())
+                .id(trip.getId())
+                .build();
         // Przekazanie wycieczki do formularza edycji w widoku
-        model.addAttribute("trip", trip);
+        model.addAttribute("trip", tripDto);
 
         // Zwrócenie widoku edycji
         return "editTrip";

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html
+<html  xmlns:sec="http://www.w3.org/1999/xhtml"
         xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
@@ -34,13 +34,13 @@
     <li th:each="trip : ${trips}">
         <div>
             <span th:text="${trip.getAirportTo().getLocation().getCountry()+' - '+ trip.getAirportTo().getLocation().getCity()}"></span>
-            <a th:href="@{'/main_page/' + ${trip.getId()}}">
+            <a sec:authorize="hasRole('USER')" th:href="@{'/main_page/' + ${trip.getId()}}">
                 <button>Kup</button>
             </a>
-            <a th:href="@{'trips/edit_trip/' + ${trip.getId()}}">
+            <a sec:authorize="hasRole('ADMIN')" th:href="@{'trips/edit_trip/' + ${trip.getId()}}">
                 <button>Edytuj</button>
             </a>
-            <a th:href="@{'/trips/delete/' + ${trip.getId()}}">
+            <a sec:authorize="hasRole('ADMIN')" th:href="@{'/trips/delete/' + ${trip.getId()}}">
                 <button>Usuń</button>
             </a>
         </div>

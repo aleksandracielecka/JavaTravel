@@ -10,6 +10,7 @@ import com.example.javatravel.service.*;
 import com.example.javatravel.utils.mapper.TripMapper;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.origin.TextResourceOrigin;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,12 +20,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.thymeleaf.util.DateUtils;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @AllArgsConstructor
+@Slf4j
 public class NewTripController {
 
     private final TripService tripService;
@@ -57,6 +61,11 @@ public class NewTripController {
     public String createTrip(@ModelAttribute("newTrip") NewTripDto dto, Model model) {
 
 
+         if (Objects.isNull(dto.getStartDate()) || dto.getStartDate().isBefore(LocalDate.now())){
+                 model.addAttribute("error", "The id selected is out of Range, please select another id within range");
+                 log.error("Incorrect startDate: {}", dto.getStartDate());
+                 return "createTrip";
+         }
         HotelEntity selectedHotel = hotelService.getHotelById(dto.getHotelId());
         AirportEntity selectedAirportFrom = airportRepository.getByCode(dto.getAirportFromCode());
         AirportEntity selectedAirportTo = airportRepository.getByCode(dto.getAirportToCode());

@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -67,7 +68,7 @@ public class NewPurchaseController {
                 .add(BigDecimal.valueOf(priceEntity.getPricePerDay() * adultNumber * priceByStandard * tripDuration))
                 .add(BigDecimal.valueOf(priceEntity.getPricePerDay() * childNumber * priceByStandard * tripDuration / 2));
 
-        return finalPrice;
+        return finalPrice.setScale(2, MathContext.DECIMAL32.getRoundingMode());
     }
 
     @PostMapping("/purchase")

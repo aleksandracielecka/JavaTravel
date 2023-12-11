@@ -25,7 +25,12 @@ public class TripService {
         return tripRepository.findAll();
     }
 
-    public TripEntity editTrip(TripEntity trip) {
+    public TripEntity editTrip(TripDto tripDto) {
+        var trip = tripRepository.getReferenceById(tripDto.getId());
+        trip.setMaxAdultNumber(tripDto.getMaxAdultNumber());
+        trip.setMaxChildNumber(tripDto.getMaxChildNumber());
+        trip.setStartDate(tripDto.getStartDate());
+        trip.setEndDate(tripDto.getEndDate());
         return tripRepository.save(trip);
     }
 
@@ -48,20 +53,20 @@ public class TripService {
     }
 
     public List<TripEntity> tripFilter(List<Long> selectedLocations, LocalDate startDate, LocalDate endDate) {
-        List<TripEntity> allTrips = tripRepository.findAll();
-        List<TripEntity> filterTrips = new ArrayList<>();
+     //   List<TripEntity> allTrips = tripRepository.findAll();
+        /* List<TripEntity> filterTrips = new ArrayList<>();
         for(TripEntity trip: allTrips){
             if (selectedLocations.contains(trip.getAirportTo().getLocation().getId())){
-                LocalDate tripStartDate = trip.getStartDate();
+               *//* LocalDate tripStartDate = trip.getStartDate();
                 LocalDate tripEndDate = trip.getEndDate();
-                if((startDate == null || tripStartDate.isEqual(startDate) || tripStartDate.isAfter(startDate) &&
-                        (endDate == null || tripEndDate.isEqual(endDate) || tripEndDate.isAfter(endDate)))){
-                    filterTrips.add(trip);
+                if(((startDate == null || ( tripStartDate.isEqual(startDate) || tripStartDate.isAfter(startDate))) ||
+                        ((endDate == null || tripEndDate.isEqual(endDate) || tripEndDate.isAfter(endDate))))){
+              *//*      filterTrips.add(trip);
 
-                }
+               // }
             }
-        }
-       return filterTrips;
+        }*/
+       return tripRepository.listTripsByStartDateAndEndDate(startDate, endDate, selectedLocations);
     }
     public TripEntity getTripById(Long id) {
         return tripRepository.findById(id).orElseThrow(()-> new RuntimeException("Nie znaleziono wycieczki"));
