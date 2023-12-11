@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html
-      xmlns:th="http://www.thymeleaf.org" lang="en">
+        xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,40 +9,81 @@
 <h1> FORMULARZ TWORZENIA WYCIECZEK</h1>
 <p th:text="${welcome}"></p>
 
-    </select>
 <form th:action="@{/create_trip}" method="post">
-<!--<select th:field="*{hotels}">-->
-<select name="selectedHotelId">
-    <option value="">Wybierz hotel</option>
-    <option th:each="h: ${hotels}" th:value="${h.getId()}" th:text="${h.getName()+
-    ', '+h.getDescription()+' '+h.getStars()+h.getLocation()}"></option>
-</select>
-    <p> </p>
-    <select name="airportCode">
-        <option value="">Wybierz lotnisko wylotu</option>
-        <option th:each="a: ${airportsFrom}" th:value="${a.getCode()}" th:text="${a.getName()+
-    ', '+a.getLocation()}"></option>
-    </select>
-    <select name="airportCode">
-        <option value="">Wybierz lotnisko przylotu</option>
-        <option th:each="a: ${airportsTo}" th:value="${a.getCode()}" th:text="${a.getName()+
-    ', '+a.getLocation()}"></option>
-    </select>
-    <p> </p>
+
     <label for="startDate">Data rozpoczęcia wycieczki:</label>
     <input type="date" id="startDate" name="startDate">
-    <p> </p>
     <label for="endDate">Data zakończenia wycieczki:</label>
     <input type="date" id="endDate" name="endDate">
-    <p> </p>
-    <label for="maxAdultNumber">Wybierz liczbę osób dorosłych (od 1 do 20):</label>
-    <input type="number" id="maxAdultNumber" name="maxAdultNumber" min="1" max="20">
-    <p> </p>
-    <label for="maxChildNumber">Wybierz liczbę dzieci (od 0 do 10):</label>
-    <input type="number" id="maxChildNumber" name="maxChildNumber" min="0" max="10">
-    <p> </p>
+    <label for="maxAdultNumber">Wybierz maksymalną liczbę osób dorosłych:</label>
+    <input type="number" id="maxAdultNumber" name="maxAdultNumber" min="0" max="200">
+    <label for="maxChildNumber">Wybierz maksymalną liczbę dzieci:</label>
+    <input type="number" id="maxChildNumber" name="maxChildNumber" min="0" max="100">
+
+
+    <select name="hotelId">
+        <option value="">Wybierz hotel</option>
+        <option th:each="h: ${hotels}" th:value="${h.id}" th:text="${h.name + ', ' + h.location}"></option>
+    </select>
+    <select name="airportFromCode">
+        <option value="">Wybierz lotnisko odlotu</option>
+        <option th:each="a: ${airportsFrom}" th:value="${a.code}" th:text="${a.code + ', ' + a.getLocation()}"></option>
+    </select>
+    <select name="airportToCode">
+        <option value="">Wybierz lotnisko przylotu</option>
+        <option th:each="a: ${airportsTo}" th:value="${a.code}" th:text="${a.code + ', ' + a.getLocation()}"></option>
+    </select>
+    <select name="priceId">
+        <option value="">Wybierz podstawową cenę za osobę (cena pobytu, cena za lot)</option>
+        <option th:each="p: ${prices}" th:value="${p.getId()}" th:text="${p.getPricePerDay()+
+        ', '+p.getFlightPrice()}"></option>
+    </select>
+
     <button type="submit">Utwórz wycieczkę</button>
+
 </form>
+<!--<form th:action="@{/create_trip}" method="post">-->
+
+<!--    <label for="hotelId">Wybierz hotel:</label>-->
+<!--    <select id="hotelId" name="hotelId" th:field="*{hotelId}">-->
+<!--        <option th:each="hotel : ${hotels}" th:value="${hotel.id}" th:text="${hotel.name}"></option>-->
+<!--    </select>-->
+<!--&lt;!&ndash;    <select name="hotelId">&ndash;&gt;-->
+<!--&lt;!&ndash;        <option value="">Wybierz hotel</option>&ndash;&gt;-->
+<!--&lt;!&ndash;        <option th:each="h: ${hotels}" th:value="${h.getId()}" th:text="${h.getName()}"></option>&ndash;&gt;-->
+<!--&lt;!&ndash;    </select>&ndash;&gt;-->
+<!--    <p></p>-->
+<!--    <select name="airportFromCode">-->
+<!--        <option value="">Wybierz lotnisko wylotu</option>-->
+<!--        <option th:each="a: ${airportsFrom}" th:value="${a.getCode()}" th:text="${a.getName()+-->
+<!--    ', '+a.getLocation()}"></option>-->
+<!--    </select>-->
+<!--    <select name="airportToCode">-->
+<!--        <option value="">Wybierz lotnisko przylotu</option>-->
+<!--        <option th:each="a: ${airportsTo}" th:value="${a.getCode()}" th:text="${a.getName()+-->
+<!--    ', '+a.getLocation()}"></option>-->
+<!--    </select>-->
+<!--    <p></p>-->
+<!--    <label for="startDate">Data rozpoczęcia wycieczki:</label>-->
+<!--    <input type="date" id="startDate" name="startDate">-->
+<!--    <p></p>-->
+<!--    <label for="endDate">Data zakończenia wycieczki:</label>-->
+<!--    <input type="date" id="endDate" name="endDate">-->
+<!--    <p></p>-->
+<!--    <label for="maxAdultNumber">Wybierz liczbę osób dorosłych (od 1 do 20):</label>-->
+<!--    <input type="number" id="maxAdultNumber" name="maxAdultNumber" min="1" max="20">-->
+<!--    <p></p>-->
+<!--    <label for="maxChildNumber">Wybierz liczbę dzieci (od 0 do 10):</label>-->
+<!--    <input type="number" id="maxChildNumber" name="maxChildNumber" min="0" max="10">-->
+<!--    <p></p>-->
+<!--    <select name="priceId">-->
+<!--        <option value="">Wybierz podstawową cenę za osobę</option>-->
+<!--        <option th:each="p: ${prices}" th:value="${p.getId()}" th:text="${p.getPricePerDay()+-->
+<!--    ', '+p.getFlightPrice()}"></option>-->
+<!--    </select>-->
+
+<!--    <button type="submit">Utwórz wycieczkę</button>-->
+<!--</form>-->
 
 
 <!--<select th:field="*{locations}">-->

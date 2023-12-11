@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
@@ -30,6 +31,8 @@ public class MainPageController {
     public String getWelcome(Model model) {
         List<LocationDto> locations = locationService.getLocationList();
         model.addAttribute("locations", locations);
+        List<TripEntity> trips = tripService.getTripList();
+        model.addAttribute("trips",trips);
 
         return "mainPage";
     }
@@ -46,6 +49,12 @@ public class MainPageController {
 
         model.addAttribute("filterTrips", filterTrips);
         return "trips";
+    }
+    @GetMapping("/main_page/{id}")
+    public String getTripDetailsfromMain(Model model, @PathVariable("id") Long tripId) {
+        TripEntity trip = tripService.getTripById(tripId);
+        model.addAttribute("trip", trip);
+        return "tripDetails";
     }
 
 

@@ -29,23 +29,29 @@
 </form>
 
 <h2> Dostępne wycieczki:</h2>
+<ul>
 
+    <li th:each="trip : ${trips}">
+        <div>
+            <span th:text="${trip.getAirportTo().getLocation().getCountry()+' - '+ trip.getAirportTo().getLocation().getCity()}"></span>
+            <a th:href="@{'/main_page/' + ${trip.getId()}}">
+                <button>Kup</button>
+            </a>
+            <a th:href="@{'trips/edit_trip/' + ${trip.getId()}}">
+                <button>Edytuj</button>
+            </a>
+            <a th:href="@{'/trips/delete/' + ${trip.getId()}}">
+                <button>Usuń</button>
+            </a>
+        </div>
+        <div>Wylot z: <span th:text="${trip.getAirportFrom().getLocation().getCity()}"></span></div>
+        <div>Data rozpoczęcia: <span th:text="${trip.getStartDate()}"></span></div>
+        <div>Data zakończenia: <span th:text="${trip.getEndDate()}"></span></div>
+        <hr/>
+    </li>
+
+</ul>
 </body>
 </html>
 
 
-<!--<select th:field="*{locations}">-->
-<!--    <option value="">Wybierz lokację</option>-->
-<!--    <option th:each="l : ${locations}" th:value="${l.getId()}"-->
-<!--            th:text="${l.getCountry() }">-->
-<!--    </option>-->
-<!--</select>-->
-
-
-<!--<select th:field="*{locations}">-->
-<!--    <option value="">Wybierz lokację</option>-->
-<!--    <option th:each="l : ${locations}" th:value="${l.getId()}"-->
-<!--            th:text="${l.getCountry() +', '+-->
-<!--            l.getCity()}">-->
-<!--    </option>-->
-<!--</select>-->

@@ -51,6 +51,18 @@ public class TripController {
         }
     }
 
+    @GetMapping("/edit_trip/{id}")
+    public String getEditTrip(@PathVariable("id") Long tripId, Model model) {
+        // Pobieranie informacji o wycieczce do edycji na podstawie ID
+        TripEntity trip = tripService.getTripById(tripId);
+
+        // Przekazanie wycieczki do formularza edycji w widoku
+        model.addAttribute("trip", trip);
+
+        // Zwrócenie widoku edycji
+        return "editTrip";
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTrip(@PathVariable Long id){
         try {
@@ -58,6 +70,18 @@ public class TripController {
             return ResponseEntity.noContent().build();
         }catch (EntityNotFoundException e){
             return ResponseEntity.notFound().build();
+        }
+
+    }
+    @GetMapping("/delete/{id}")
+    public String deleteTripById(@PathVariable Long id) {
+        try {
+            tripService.deleteTrip(id);
+            return "redirect:/main_page"; // Przekierowanie po usunięciu wycieczki
+        } catch (EntityNotFoundException e) {
+
+            // Obsłuż wyjątek, np. przekieruj do strony błędu
+            return "error";
         }
 
     }
