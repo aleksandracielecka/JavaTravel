@@ -50,12 +50,4 @@ public class MainPageController {
         model.addAttribute("filterTrips", filterTrips);
         return "trips";
     }
-    @GetMapping("/main_page/{id}")
-    public String getTripDetailsfromMain(Model model, @PathVariable("id") Long tripId) {
-        TripEntity trip = tripService.getTripById(tripId);
-        model.addAttribute("trip", trip);
-        return "tripDetails";
-    }
-
-
 }
