@@ -29,16 +29,16 @@ public class TripEntity {
     @Column(nullable = false)
     private Integer maxChildNumber;
 
-    @OneToOne
+    @ManyToOne
     private HotelEntity hotel;
 
-    @OneToOne
+    @ManyToOne
     private AirportEntity airportFrom;
 
-    @OneToOne
+    @ManyToOne
     private AirportEntity airportTo;
 
-    @OneToOne
+    @ManyToOne
     private PriceEntity price;
 
 

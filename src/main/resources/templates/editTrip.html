@@ -7,6 +7,23 @@
 <body>
 
 <p>Edytuj wycieczkę:</p>
+<form th:action="@{/trips/edit_trip}" method="post" th:object="${updatedTrip}">
+    <input type="hidden" name="id" th:value="${trip.getId()}"/>
+    <label for="startDate">Data rozpoczęcia wycieczki:</label>
+    <input type="date" id="startDate" name="startDate" th:value="${trip.getStartDate()}"><br>
+    <label for="endDate">Data zakończenia wycieczki:</label>
+    <input type="date" id="endDate" name="endDate"  th:value="${trip.getEndDate()}"><br>
+    <label for="maxAdultNumber">Wybierz maksymalną liczbę osób dorosłych:</label>
+    <input type="number" id="maxAdultNumber" name="maxAdultNumber" min="0" max="200"  th:value="${trip.getMaxAdultNumber()}"><br>
+    <label for="maxChildNumber">Wybierz maksymalną liczbę dzieci:</label>
+    <input type="number" id="maxChildNumber" name="maxChildNumber" min="0" max="100"  th:value="${trip.getMaxChildNumber()}"><br>
 
+
+
+
+    <button type="submit">Edytuj</button>
+
+
+</form>
 </body>
 </html>

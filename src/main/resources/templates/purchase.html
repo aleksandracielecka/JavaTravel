@@ -12,10 +12,10 @@
 <form th:action="@{/purchase}" method="post" th:object="${finalPrice}">
 
     <input type="hidden" name="selectedTripId" th:value="${selectedTrip.id}"/>
-    <label for="adultNumber">Wybierz liczbę osób dorosłych (od 1 do 20):</label>
-    <input type="number" id="adultNumber" name="adultNumber" min="1" max="20">
-    <label for="childNumber">Wybierz liczbę dzieci (od 0 do 10):</label>
-    <input type="number" id="childNumber" name="childNumber" min="0" max="10">
+    <label for="adultNumber">Wybierz liczbę osób dorosłych:</label>
+    <input type="number" id="adultNumber" name="adultNumber" min="1" th:max="${selectedTrip.maxAdultNumber}">
+    <label for="childNumber">Wybierz liczbę dzieci:</label>
+    <input type="number" id="childNumber" name="childNumber" min="0" th:max="${selectedTrip.maxChildNumber}">
 
     <select name="standard">
         <option value="">Wybierz standard</option>
