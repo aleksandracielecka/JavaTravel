@@ -32,6 +32,7 @@ public class SecurityConfig {
                                         .requestMatchers(new AntPathRequestMatcher("/filter_trips")).hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                                         .requestMatchers(new AntPathRequestMatcher("/confirmation")).hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                                         .requestMatchers(new AntPathRequestMatcher("/purchase")).hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                                        .requestMatchers(new AntPathRequestMatcher("/purchases/purchases")).hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                                         .requestMatchers(new AntPathRequestMatcher("/final_price")).hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
 //                                        .requestMatchers(new AntPathRequestMatcher("")).hasAnyAuthority("ROLE_USER")
 

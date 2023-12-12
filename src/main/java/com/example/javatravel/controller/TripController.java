@@ -57,7 +57,7 @@ public class TripController {
 
     @GetMapping("/edit_trip/{id}")
     public String getEditTrip(@PathVariable("id") Long tripId, Model model) {
-        // Pobieranie informacji o wycieczce do edycji na podstawie ID
+
         TripEntity trip = tripService.getTripById(tripId);
         log.info("Loaded trip details for trip id={}", tripId);
         NewTripDto tripDto = NewTripDto.builder()
@@ -67,10 +67,9 @@ public class TripController {
                 .maxChildNumber(trip.getMaxChildNumber())
                 .id(trip.getId())
                 .build();
-        // Przekazanie wycieczki do formularza edycji w widoku
+
         model.addAttribute("trip", tripDto);
 
-        // Zwrócenie widoku edycji
         return "editTrip";
     }
 
@@ -88,10 +87,10 @@ public class TripController {
     public String deleteTripById(@PathVariable Long id) {
         try {
             tripService.deleteTrip(id);
-            return "redirect:/main_page"; // Przekierowanie po usunięciu wycieczki
+            return "redirect:/main_page";
         } catch (EntityNotFoundException e) {
 
-            // Obsłuż wyjątek, np. przekieruj do strony błędu
+
             return "error";
         }
 
