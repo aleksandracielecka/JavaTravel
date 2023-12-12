@@ -1,35 +1,64 @@
 <!DOCTYPE html>
 <html
-      xmlns:th="http://www.thymeleaf.org" lang="en">
+        xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>TripDetails</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 </head>
 <body>
-<h1> Szczegóły wycieczki</h1>
 
-<label>Id wycieczki:</label>
-<p th:text="${trip.getId()}"></p>
-<label>Nazwa hotelu:</label>
-<p th:text="${trip.getHotel().getName()}"></p>
-<label>Lotnisko wylotu:</label>
-<p th:text="${trip.getAirportFrom().getCode()} +' '+${trip.getAirportFrom().getName()} +' '+${trip.getAirportFrom().getLocation().getCity()}"></p>
-<label>Lotnisko powrotu:</label>
-<p th:text="${trip.getAirportTo().getCode()} +' '+${trip.getAirportTo().getName()} +' '+${trip.getAirportTo().getLocation().getCity()}"></p>
-<label>Data rozpoczęcia wycieczki:</label>
-<p th:text="${trip.getStartDate()}"></p>
-<label>Data zakończenia wycieczki:</label>
-<p th:text="${trip.getEndDate()}"></p>
-<label>Cena:</label>
-<ul>
-    <li th:each="price : ${trip.getPrice()}" th:text="${price.getPricePerDay()}"></li>
-</ul>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+        <a class="navbar-brand"><strong>Java Travel App</strong></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  th:href="@{/main_page}">Strona główna</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  th:href="@{/purchases/purchases}">Kupione wycieczki</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Wyloguj</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-<form th:action="@{/purchase}" method="get">
-    <input type="hidden" name="selectedTripId" th:value="${trip.id}" />
-    <button type="submit">Kup</button>
-</form>
+<div style="margin-left: 20px; margin-right: 20px;margin-bottom: 20px;margin-top: 20px;">
 
-<a th:href="'javascript:history.go(-1)'" >Powrót</a>
+    <h1> Szczegóły wycieczki</h1>
+
+    <div style="margin-left: 20px; margin-right: 20px;margin-bottom: 20px;margin-top: 20px;">
+
+
+    <div>Id wycieczki: <span th:text="${trip.getId()}"></span></div>
+    <div>Kierunek: <span th:text="${trip.getHotel().getLocation().getCountry()} + ' - ' + ${trip.getHotel().getLocation().getCity()}"></span></div>
+    <div>Lotnisko wylotu: <span th:text="${trip.getAirportFrom().getCode()} + ' ' + ${trip.getAirportFrom().getName()} + ' - ' + ${trip.getAirportFrom().getLocation().getCountry()} + ' ' + ${trip.getAirportFrom().getLocation().getCity()}"></span></div>
+    <div>Lotnisko powrotu: <span
+            th:text="${trip.getAirportTo().getCode()} +' '+${trip.getAirportTo().getName()} +' - '+${trip.getAirportTo().getLocation().getCountry()}+' '+${trip.getAirportTo().getLocation().getCity()}"></span>
+    </div>
+    <div>Data rozpoczęcia wycieczki: <span th:text="${trip.getStartDate()}"></span></div>
+    <div>Data zakończenia wycieczki: <span th:text="${trip.getEndDate()}"></span></div>
+    <div>Nazwa hotelu: <span th:text="${trip.getHotel().getName()}"></span></div>
+    <div>Podstawowa cena za osobę za dobę [PLN]: <span th:text=" ${trip.getPrice().getPricePerDay()}"></span></div>
+    <div>Cena za loty [PLN]: <span th:text=" ${trip.getPrice().getFlightPrice()}"></span></div>
+
+
+    <form th:action="@{/purchase}" method="get">
+        <input type="hidden" name="selectedTripId" th:value="${trip.id}"/>
+        <button type="submit">Kup</button>
+    </form>
+<br>
+    <a th:href="'javascript:history.go(-1)'">Powrót</a>
+</div>
+</div>
 </body>
 </html>

@@ -5,20 +5,47 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>MainPage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 </head>
 <body>
-<h1> JAVA TRAVEL</h1>
-<div sec:authorize="hasRole('ADMIN')">
-    <h2> Witaj Adminie! </h2>
 
-    <button type="button" class="btn btn-success" onclick="window.location.href='/create_trip'">Dodaj nową wycieczkę</button>
-    <button type="button" class="btn btn-success" onclick="window.location.href='/purchases/purchases'">Kupione wycieczki</button>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+        <a class="navbar-brand"><strong>Java Travel App</strong></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  th:href="@{/main_page}">Strona główna</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  th:href="@{/purchases/purchases}">Kupione wycieczki</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Wyloguj</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div style="margin-left: 20px; margin-right: 20px;margin-bottom: 20px;">
+
+<div sec:authorize="hasRole('ADMIN')">
+    <p> Witaj Adminie! </p>
+
+    <button type="button" class="btn btn-outline-secondary" onclick="window.location.href='/create_trip'">Dodaj nową wycieczkę</button>
+<br>
 
 </div>
 <div sec:authorize="hasRole('USER')">
-    <h2> Witaj Użytkowniku! </h2>
-    <button type="button" class="btn btn-success" onclick="window.location.href='/purchases/purchases'">Kupione wycieczki</button>
+    <p> Witaj Użytkowniku! </p>
 </div>
 <form th:action="@{/filter_trips}" method="get">
 
@@ -36,6 +63,7 @@
     <input type="date" id="endDate" name="endDate">
     <br/>
     <button type="submit">Filtruj</button>
+    <br>
 </form>
 
 <h2> Dostępne wycieczki:</h2>
@@ -61,7 +89,7 @@
     </li>
 
 </ul>
-
+</div>
 </body>
 </html>
 
