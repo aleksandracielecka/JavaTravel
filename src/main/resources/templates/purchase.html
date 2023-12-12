@@ -3,29 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 </head>
 <body>
 
-<h1> Uzupełnij dane dotyczące Twojej wycieczki</h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+        <a class="navbar-brand"><strong>Java Travel App</strong></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  th:href="@{/main_page}">Strona główna</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  th:href="@{/purchases/purchases}">Kupione wycieczki</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Wyloguj</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div style="margin-left: 20px; margin-right: 20px;margin-bottom: 20px;margin-top: 20px;">
+
+    <h1> Uzupełnij dane dotyczące Twojej wycieczki</h1>
+    <div style="margin-left: 20px; margin-right: 20px;margin-bottom: 20px;margin-top: 20px;">
 
 
-<form th:action="@{/purchase}" method="post" th:object="${finalPrice}">
+    <form th:action="@{/purchase}" method="post" th:object="${finalPrice}">
 
-    <input type="hidden" name="selectedTripId" th:value="${selectedTrip.id}"/>
-    <label for="adultNumber">Wybierz liczbę osób dorosłych:</label>
-    <input type="number" id="adultNumber" name="adultNumber" min="1" th:max="${selectedTrip.maxAdultNumber}">
-    <label for="childNumber">Wybierz liczbę dzieci:</label>
-    <input type="number" id="childNumber" name="childNumber" min="0" th:max="${selectedTrip.maxChildNumber}">
-
-    <select name="standard">
-        <option value="">Wybierz standard</option>
-        <option th:each="standard: ${standards}" th:value="${standard}" th:text="${standard}">
-        </option>
-    </select>
-
-    <button type="submit">Pokaż cenę dla wybranych parametrów</button>
-
-</form>
-
+        <input type="hidden" name="selectedTripId" th:value="${selectedTrip.id}"/>
+        <div><label for="adultNumber">Wybierz liczbę osób dorosłych:</label>
+            <input type="number" id="adultNumber" name="adultNumber" min="1" th:max="${selectedTrip.maxAdultNumber}">
+        </div>
+        <br>
+        <div><label for="childNumber">Wybierz liczbę dzieci:</label>
+            <input type="number" id="childNumber" name="childNumber" min="0" th:max="${selectedTrip.maxChildNumber}">
+        </div>
+<br>
+        <div><select name="standard">
+            <option value="">Wybierz standard</option>
+            <option th:each="standard: ${standards}" th:value="${standard}" th:text="${standard}">
+            </option>
+        </select></div>
+<br>
+        <div>
+            <button type="submit">Pokaż cenę dla wybranych parametrów</button>
+        </div>
+    </form>
+</div>
+</div>
 </body>
 </html>

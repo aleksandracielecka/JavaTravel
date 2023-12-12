@@ -3,48 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 </head>
 <body>
 
-<h1> Szczegóły wycieczki </h1>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+        <a class="navbar-brand"><strong>Java Travel App</strong></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  th:href="@{/main_page}">Strona główna</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  th:href="@{/purchases/purchases}">Kupione wycieczki</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Wyloguj</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-<label>Id wycieczki:</label>
-<p th:text="${selectedTrip.getId()}"></p>
-<label>Nazwa hotelu:</label>
-<p th:text="${selectedTrip.getHotel().getName()}"></p>
-<label>Lotnisko wylotu:</label>
-<p th:text="${selectedTrip.getAirportFrom().getCode()} +' '+${selectedTrip.getAirportFrom().getName()} +' '+${selectedTrip.getAirportFrom().getLocation().getCity()}"></p>
-<label>Lotnisko powrotu:</label>
-<p th:text="${selectedTrip.getAirportTo().getCode()} +' '+${selectedTrip.getAirportTo().getName()} +' '+${selectedTrip.getAirportTo().getLocation().getCity()}"></p>
-<label>Data rozpoczęcia wycieczki:</label>
-<p th:text="${selectedTrip.getStartDate()}"></p>
-<label>Data zakończenia wycieczki:</label>
-<p th:text="${selectedTrip.getEndDate()}"></p>
-<label>Liczba osób dorosłych:</label>
-<p th:text="${adultNumber}"></p>
-<label>Liczba dzieci:</label>
-<p th:text="${childNumber}"></p>
-<label>Standard:</label>
-<p th:text="${standard}"></p>
+<div style="margin-left: 20px; margin-right: 20px;margin-bottom: 20px;margin-top: 20px;">
 
-<label>Podstawowa cena za osobę:</label>
-
-    <p th:text=" ${selectedTrip.getPrice().getPricePerDay()}" ></p>
-
-<label>Cena całkowita:</label>
-<p th:text="${finalPrice}"></p>
+    <h1> Szczegóły wycieczki </h1>
+    <div style="margin-left: 20px; margin-right: 20px;margin-bottom: 20px;margin-top: 20px;">
 
 
-<form th:action="@{/final_price}" method="post" th:object="${finalPurchase}">
+<!--        <div>Id wycieczki: <span th:text="${selectedTrip.getId()}"></span></div>-->
+<!--        <div>Kierunek: <span th:text="${selectedTrip.getHotel().getLocation().getCountry()} + ' - ' + ${selectedTrip.getHotel().getLocation().getCity()}"></span></div>-->
+<!--        <div>Lotnisko wylotu: <span th:text="${selectedTrip.getAirportFrom().getCode()} + ' ' + ${selectedTrip.getAirportFrom().getName()} + ' - ' + ${selectedTrip.getAirportFrom().getLocation().getCountry()} + ' ' + ${selectedTrip.getAirportFrom().getLocation().getCity()}"></span></div>-->
+<!--        <div>Lotnisko powrotu: <span-->
+<!--                th:text="${selectedTrip.getAirportTo().getCode()} +' '+${selectedTrip.getAirportTo().getName()} +' - '+${selectedTrip.getAirportTo().getLocation().getCountry()}+' '+${selectedTrip.getAirportTo().getLocation().getCity()}"></span>-->
+<!--        </div>-->
+<!--        <div>Data rozpoczęcia wycieczki: <span th:text="${selectedTrip.getStartDate()}"></span></div>-->
+<!--        <div>Data zakończenia wycieczki: <span th:text="${selectedTrip.getEndDate()}"></span></div>-->
+<!--        <div>Nazwa hotelu: <span th:text="${selectedTrip.getHotel().getName()}"></span></div>-->
+<!--        <div>Liczba osób dorosłych: <span th:text="${adultNumber}"></span></div>-->
+<!--        <div>Liczba dzieci: <span th:text="${childNumber}"></span></div>-->
+<!--        <div>Standard: <span th:text="${standard}"></span></div>-->
+<!--        <div>Standard: <span th:text="${standard}"></span></div>-->
+<!--        <div>Podstawowa cena za osobę za dobę[PLN]: <span th:text=" ${selectedTrip.getPrice().getPricePerDay()}"></span></div>-->
+<!--        <div>Cena całkowita wycieczki [PLN]: <span th:text=" ${finalPrice}"></span></div>-->
 
-    <input type="hidden" name="tripId" th:value="${selectedTrip.getId()}"/>
-    <input type="hidden" name="adultNumber" th:value="${adultNumber}">
-    <input type="hidden" name="childNumber" th:value="${childNumber}">
-    <input type="hidden" name="finalPrice" th:value="${finalPrice}">
+        <label>Id wycieczki: </label>
+        <p th:text="${selectedTrip.getId()}"></p>
+        <label>Kierunek: </label>
+        <p th:text="${selectedTrip.getHotel().getLocation().getCountry()} + ' - ' + ${selectedTrip.getHotel().getLocation().getCity()}"></p>
+        <label>Lotnisko wylotu:</label>
+        <p th:text="${selectedTrip.getAirportFrom().getCode()} +' '+${selectedTrip.getAirportFrom().getName()} +' '+${selectedTrip.getAirportFrom().getLocation().getCity()}"></p>
+        <label>Lotnisko powrotu:</label>
+        <p th:text="${selectedTrip.getAirportTo().getCode()} +' '+${selectedTrip.getAirportTo().getName()} +' '+${selectedTrip.getAirportTo().getLocation().getCity()}"></p>
+        <label>Data rozpoczęcia wycieczki:</label>
+        <p th:text="${selectedTrip.getStartDate()}"></p>
+        <label>Data zakończenia wycieczki:</label>
+        <p th:text="${selectedTrip.getEndDate()}"></p>
+        <label>Nazwa hotelu:</label>
+        <p th:text="${selectedTrip.getHotel().getName()}"></p>
+        <label>Liczba osób dorosłych:</label>
+        <p th:text="${adultNumber}"></p>
+        <label>Liczba dzieci:</label>
+        <p th:text="${childNumber}"></p>
+        <label>Standard:</label>
+        <p th:text="${standard}"></p>
 
-    <button type="submit">Kup wycieczkę</button>
+        <label>Podstawowa cena za osobę:</label>
 
-</form>
+        <p th:text=" ${selectedTrip.getPrice().getPricePerDay()}"></p>
+
+        <label>Cena całkowita:</label>
+        <p th:text="${finalPrice}"></p>
+
+
+        <form th:action="@{/final_price}" method="post" th:object="${finalPurchase}">
+
+            <input type="hidden" name="tripId" th:value="${selectedTrip.getId()}"/>
+            <input type="hidden" name="adultNumber" th:value="${adultNumber}">
+            <input type="hidden" name="childNumber" th:value="${childNumber}">
+            <input type="hidden" name="finalPrice" th:value="${finalPrice}">
+
+            <button type="submit">Kup wycieczkę</button>
+
+        </form>
+    </div>
+</div>
 
 </body>
 </html>

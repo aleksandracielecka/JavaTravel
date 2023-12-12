@@ -1,25 +1,62 @@
 <!DOCTYPE html>
-<html        xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Purchased trips</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet">
 </head>
 <body>
-<p1> Zakupione wycieczki</p1>
-<ul>
-    <li th:each="purchase : ${purchases}">
-        <p>Id wycieczki: <span th:text="${purchase.id}"></span></p>
-        <p>Adres email użytkownika: <span th:text="${purchase.getUser().getEmail()}"></span></p>
-        <p>Nazwa hotelu: <span th:text="${purchase.getTrip().getHotel().getName()}"></span></p>
-        <p>Lotnisko wylotu: <span th:text="${purchase.getTrip().getAirportTo().getLocation().getCountry() + ' '+purchase.getTrip().getAirportTo().getLocation().getCity()}"></span></p>
-        <p>Lotnisko powrotu: <span th:text="${purchase.getTrip().getAirportFrom().getLocation().getCountry() + ' '+purchase.getTrip().getAirportFrom().getLocation().getCity()}"></span></p>
-        <p>Data rozpoczęcia wycieczki: <span th:text="${purchase.getTrip().getStartDate()}"></span></p>
-        <p>Data zakończenia wycieczki: <span th:text="${purchase.getTrip().getEndDate()}"></span></p>
-        <p>Liczba dorosłych: <span th:text="${purchase.getAdultNumber()}"></span></p>
-        <p>Liczba dzieci: <span th:text="${purchase.getChildNumber()}"></span></p>
-        <p>Cena całkowita: <span th:text="${purchase.getFinalPrice()}"></span></p>
-    </li>
-</ul>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+        <a class="navbar-brand"><strong>Java Travel App</strong></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  th:href="@{/main_page}">Strona główna</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  th:href="@{/purchases/purchases}">Kupione wycieczki</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/logout}">Wyloguj</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div style="margin-left: 20px; margin-right: 20px;margin-bottom: 20px;margin-top: 20px;">
+
+    <h1> Zakupione wycieczki</h1>
+    <div style="margin-left: 20px; margin-right: 20px;margin-bottom: 20px;margin-top: 20px;">
+
+        <ul>
+            <li th:each="purchase : ${purchases}">
+                <p>Id wycieczki: <span th:text="${purchase.id}"></span></p>
+                <p>Adres email użytkownika: <span th:text="${purchase.getUser().getEmail()}"></span></p>
+                <p>Nazwa hotelu: <span th:text="${purchase.getTrip().getHotel().getName()}"></span></p>
+                <p>Lotnisko wylotu: <span
+                        th:text="${purchase.getTrip().getAirportTo().getLocation().getCountry() + ' '+purchase.getTrip().getAirportTo().getLocation().getCity()}"></span>
+                </p>
+                <p>Lotnisko powrotu: <span
+                        th:text="${purchase.getTrip().getAirportFrom().getLocation().getCountry() + ' '+purchase.getTrip().getAirportFrom().getLocation().getCity()}"></span>
+                </p>
+                <p>Data rozpoczęcia wycieczki: <span th:text="${purchase.getTrip().getStartDate()}"></span></p>
+                <p>Data zakończenia wycieczki: <span th:text="${purchase.getTrip().getEndDate()}"></span></p>
+                <p>Liczba dorosłych: <span th:text="${purchase.getAdultNumber()}"></span></p>
+                <p>Liczba dzieci: <span th:text="${purchase.getChildNumber()}"></span></p>
+                <p>Cena całkowita: <span th:text="${purchase.getFinalPrice()}"></span></p>
+            </li>
+        </ul>
+
+    </div>
+</div>
 
 </body>
 </html>
