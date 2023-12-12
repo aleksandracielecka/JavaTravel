@@ -36,10 +36,16 @@
 <div class="container mt-4">
 <h2>Welcome</h2>
 <div sec:authorize="hasRole('USER')">
-    <button type="button" class="btn btn-primary">Hello Client!</button>
+    <button type="button" class="btn btn-primary">Witaj użytkowniku!</button>
+    <button type="button" class="btn btn-success" onclick="window.location.href='/main_page'">Strona głowna</button>
+    <button type="button" class="btn btn-success" onclick="window.location.href='/purchases/purchases'">Kupione wycieczki</button>
    </div>
 <div sec:authorize="hasRole('ADMIN')">
-    <button type="button" class="btn btn-success">Hello Admin!</button>
+    <button type="button" class="btn btn-success">Witaj Adminie!</button>
+    <button type="button" class="btn btn-success" onclick="window.location.href='/main_page'">Strona głowna</button>
+    <button type="button" class="btn btn-success" onclick="window.location.href='/create_trip'">Dodaj nową wycieczkę</button>
+    <button type="button" class="btn btn-success" onclick="window.location.href='/purchases/purchases'">Kupione wycieczki</button>
+
    </div>
 <div sec:authorize="isAuthenticated()"> Text visible only to authenticated users.</div>
 Authenticated email:

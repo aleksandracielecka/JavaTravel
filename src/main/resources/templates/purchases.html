@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html        xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Purchased trips</title>
+</head>
+<body>
+<p1> Zakupione wycieczki</p1>
+<ul>
+    <li th:each="purchase : ${purchases}">
+        <p>Id wycieczki: <span th:text="${purchase.id}"></span></p>
+        <p>Adres email użytkownika: <span th:text="${purchase.getUser().getEmail()}"></span></p>
+        <p>Nazwa hotelu: <span th:text="${purchase.getTrip().getHotel().getName()}"></span></p>
+        <p>Lotnisko wylotu: <span th:text="${purchase.getTrip().getAirportTo().getLocation().getCountry() + ' '+purchase.getTrip().getAirportTo().getLocation().getCity()}"></span></p>
+        <p>Lotnisko powrotu: <span th:text="${purchase.getTrip().getAirportFrom().getLocation().getCountry() + ' '+purchase.getTrip().getAirportFrom().getLocation().getCity()}"></span></p>
+        <p>Data rozpoczęcia wycieczki: <span th:text="${purchase.getTrip().getStartDate()}"></span></p>
+        <p>Data zakończenia wycieczki: <span th:text="${purchase.getTrip().getEndDate()}"></span></p>
+        <p>Liczba dorosłych: <span th:text="${purchase.getAdultNumber()}"></span></p>
+        <p>Liczba dzieci: <span th:text="${purchase.getChildNumber()}"></span></p>
+        <p>Cena całkowita: <span th:text="${purchase.getFinalPrice()}"></span></p>
+    </li>
+</ul>
+
+</body>
+</html>
