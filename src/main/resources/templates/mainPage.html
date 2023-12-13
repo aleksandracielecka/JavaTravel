@@ -73,13 +73,16 @@
         <div>
             <span th:text="${trip.getAirportTo().getLocation().getCountry()+' - '+ trip.getAirportTo().getLocation().getCity()}"></span>
             <a sec:authorize="hasRole('USER')" th:href="@{'/trip_details/' + ${trip.getId()}}">
-                <button>Kup</button>
+                <button>Wybierz</button>
             </a>
             <a sec:authorize="hasRole('ADMIN')" th:href="@{'trips/edit_trip/' + ${trip.getId()}}">
                 <button>Edytuj</button>
             </a>
             <a sec:authorize="hasRole('ADMIN')" th:href="@{'/trips/delete/' + ${trip.getId()}}">
                 <button>Usuń</button>
+            </a>
+            <a sec:authorize="hasRole('ADMIN')" th:href="@{'/trip_details/' + ${trip.getId()}}">
+                <button>Wybierz</button>
             </a>
         </div>
         <div>Wylot z: <span th:text="${trip.getAirportFrom().getLocation().getCity()}"></span></div>

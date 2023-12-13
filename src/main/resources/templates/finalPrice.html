@@ -67,6 +67,10 @@
         <p th:text="${selectedTrip.getEndDate()}"></p>
         <label>Nazwa hotelu:</label>
         <p th:text="${selectedTrip.getHotel().getName()}"></p>
+        <label>Opis hotelu: </label>
+        <p th:text="${selectedTrip.getHotel().getDescription()}"></p>
+        <label>Hotel - liczba gwiazdek:</label>
+        <p th:text="${selectedTrip.getHotel().getStars()}"></p>
         <label>Liczba osób dorosłych:</label>
         <p th:text="${adultNumber}"></p>
         <label>Liczba dzieci:</label>
@@ -77,6 +81,9 @@
         <label>Podstawowa cena za osobę:</label>
 
         <p th:text=" ${selectedTrip.getPrice().getPricePerDay()}"></p>
+        <label>Cena za loty:</label>
+
+        <p th:text=" ${selectedTrip.getPrice().getFlightPrice()}"></p>
 
         <label>Cena całkowita:</label>
         <p th:text="${finalPrice}"></p>

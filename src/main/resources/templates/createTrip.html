@@ -53,22 +53,22 @@
 
     <select name="hotelId">
         <option value="">Wybierz hotel</option>
-        <option th:each="h: ${hotels}" th:value="${h.id}" th:text="${h.name + ', ' + h.location}"></option>
+        <option th:each="h: ${hotels}" th:value="${h.id}" th:text="${h.name + ', ' + h.location.getCountry()+ ', ' + h.location.getCity()}"></option>
     </select><br>
     <select name="airportFromCode">
         <option value="">Wybierz lotnisko odlotu</option>
-        <option th:each="a: ${airportsFrom}" th:value="${a.code}" th:text="${a.code + ', ' + a.getLocation()}"></option>
+        <option th:each="a: ${airportsFrom}" th:value="${a.code}" th:text="${a.code+ ', ' + a.getLocation().getCountry() + ', ' + a.getLocation().getCity()}"></option>
     </select><br>
     <select name="airportToCode">
         <option value="">Wybierz lotnisko przylotu</option>
-        <option th:each="a: ${airportsTo}" th:value="${a.code}" th:text="${a.code + ', ' + a.getLocation()}"></option>
+        <option th:each="a: ${airportsTo}" th:value="${a.code}" th:text="${a.code + ', ' + a.getLocation().getCountry()+ ', ' + a.getLocation().getCity()}"></option>
     </select><br>
     <select name="priceId">
         <option value="">Wybierz podstawową cenę za osobę (cena pobytu, cena za lot)</option>
         <option th:each="p: ${prices}" th:value="${p.getId()}" th:text="${p.getPricePerDay()+
         ', '+p.getFlightPrice()}"></option>
     </select><br>
-
+<br>
     <button type="submit">Utwórz wycieczkę</button>
 
 

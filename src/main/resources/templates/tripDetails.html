@@ -41,13 +41,15 @@
 
     <div>Id wycieczki: <span th:text="${trip.getId()}"></span></div>
     <div>Kierunek: <span th:text="${trip.getHotel().getLocation().getCountry()} + ' - ' + ${trip.getHotel().getLocation().getCity()}"></span></div>
-    <div>Lotnisko wylotu: <span th:text="${trip.getAirportFrom().getCode()} + ' ' + ${trip.getAirportFrom().getName()} + ' - ' + ${trip.getAirportFrom().getLocation().getCountry()} + ' ' + ${trip.getAirportFrom().getLocation().getCity()}"></span></div>
+    <div>Lotnisko wylotu: <span th:text="${trip.getAirportFrom().getCode()} + ' - ' + ${trip.getAirportFrom().getName()} + ' - ' + ${trip.getAirportFrom().getLocation().getCountry()} + ' ' + ${trip.getAirportFrom().getLocation().getCity()}"></span></div>
     <div>Lotnisko powrotu: <span
-            th:text="${trip.getAirportTo().getCode()} +' '+${trip.getAirportTo().getName()} +' - '+${trip.getAirportTo().getLocation().getCountry()}+' '+${trip.getAirportTo().getLocation().getCity()}"></span>
+            th:text="${trip.getAirportTo().getCode()} +' - '+${trip.getAirportTo().getName()} +' - '+${trip.getAirportTo().getLocation().getCountry()}+' '+${trip.getAirportTo().getLocation().getCity()}"></span>
     </div>
     <div>Data rozpoczęcia wycieczki: <span th:text="${trip.getStartDate()}"></span></div>
     <div>Data zakończenia wycieczki: <span th:text="${trip.getEndDate()}"></span></div>
     <div>Nazwa hotelu: <span th:text="${trip.getHotel().getName()}"></span></div>
+    <div>Opis hotelu: <span th:text="${trip.getHotel().getDescription()}"></span></div>
+    <div>Hotel - liczba gwiazdek: <span th:text="${trip.getHotel().getStars()}"></span></div>
     <div>Podstawowa cena za osobę za dobę [PLN]: <span th:text=" ${trip.getPrice().getPricePerDay()}"></span></div>
     <div>Cena za loty [PLN]: <span th:text=" ${trip.getPrice().getFlightPrice()}"></span></div>
 

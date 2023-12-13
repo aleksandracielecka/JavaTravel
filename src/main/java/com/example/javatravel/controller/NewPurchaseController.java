@@ -46,17 +46,20 @@ public class NewPurchaseController {
 
         BigDecimal finalPrice = BigDecimal.ZERO;
         double priceByStandard = 0.0;
+        if (standardType.equals(StandardType.OB)) {
+            priceByStandard = 1.00;
+        }
         if (standardType.equals(StandardType.BB)) {
-            priceByStandard = 1.05;
+            priceByStandard = 1.10;
         }
         if (standardType.equals(StandardType.HB)) {
-            priceByStandard = 1.1;
+            priceByStandard = 1.25;
         }
         if (standardType.equals(StandardType.FB)) {
-            priceByStandard = 1.15;
+            priceByStandard = 1.30;
         }
         if (standardType.equals(StandardType.AI)) {
-            priceByStandard = 1.20;
+            priceByStandard = 1.40;
         }
 
         LocalDate startDate = selectedTrip.getStartDate();
