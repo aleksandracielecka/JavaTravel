@@ -32,18 +32,17 @@ public class MainPageController {
         List<LocationDto> locations = locationService.getLocationList();
         model.addAttribute("locations", locations);
         List<TripEntity> trips = tripService.getTripList();
-        model.addAttribute("trips",trips);
+        model.addAttribute("trips", trips);
 
         return "mainPage";
     }
 
 
-
     @GetMapping("/filter_trips")
     public String getFilterTrips(@RequestParam(value = "location", required = false) List<Long> selectedLocations,
-                                         @RequestParam(value = "startDate", required = false) LocalDate startDate,
-                                         @RequestParam(value = "endDate", required = false) LocalDate endDate,
-                                         Model model) {
+                                 @RequestParam(value = "startDate", required = false) LocalDate startDate,
+                                 @RequestParam(value = "endDate", required = false) LocalDate endDate,
+                                 Model model) {
 
         List<TripEntity> filterTrips = tripService.tripFilter(selectedLocations, startDate, endDate);
 

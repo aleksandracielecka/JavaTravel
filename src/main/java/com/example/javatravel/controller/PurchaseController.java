@@ -23,7 +23,7 @@ public class PurchaseController {
     private final PurchaseService purchaseService;
 
     @GetMapping
-    public ResponseEntity<List<PurchaseEntity>> getPurchaseList(){
+    public ResponseEntity<List<PurchaseEntity>> getPurchaseList() {
         try {
             List<PurchaseEntity> purchases = purchaseService.getPurchaseList();
             return ResponseEntity.ok(purchases);
@@ -33,9 +33,9 @@ public class PurchaseController {
     }
 
     @GetMapping("/purchases")
-    public String getPurchaseListInView(Model model){
+    public String getPurchaseListInView(Model model) {
         List<PurchaseEntity> purchases = purchaseService.getPurchaseList();
-        model.addAttribute("purchases",purchases);
+        model.addAttribute("purchases", purchases);
         return "purchases";
     }
 

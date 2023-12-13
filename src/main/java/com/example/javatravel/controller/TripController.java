@@ -35,8 +35,6 @@ public class TripController {
     }
 
 
-
-
     @PostMapping("/edit_trip")
     public String editTrip(@ModelAttribute("updatedTrip") NewTripDto updatedTrip, Model model) {
         try {
@@ -74,15 +72,16 @@ public class TripController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTrip(@PathVariable Long id){
+    public ResponseEntity<Void> deleteTrip(@PathVariable Long id) {
         try {
             tripService.deleteTrip(id);
             return ResponseEntity.noContent().build();
-        }catch (EntityNotFoundException e){
+        } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
 
     }
+
     @GetMapping("/delete/{id}")
     public String deleteTripById(@PathVariable Long id) {
         try {
@@ -95,10 +94,6 @@ public class TripController {
         }
 
     }
-
-
-
-
 
 
 }

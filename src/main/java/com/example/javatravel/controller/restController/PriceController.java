@@ -1,4 +1,4 @@
-package com.example.javatravel.controller;
+package com.example.javatravel.controller.restController;
 
 import com.example.javatravel.dto.PriceDto;
 import com.example.javatravel.entity.PriceEntity;

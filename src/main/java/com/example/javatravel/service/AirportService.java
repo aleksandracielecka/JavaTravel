@@ -41,10 +41,6 @@ public class AirportService {
     }
 
 
-    public AirportEntity getAirportCode(String code) {
-        return airportRepository.getByCode(code);
-
-    }
 
 
 }

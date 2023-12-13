@@ -1,9 +1,8 @@
-package com.example.javatravel.controller;
+package com.example.javatravel.controller.restController;
 
-
-import com.example.javatravel.dto.HotelDto;
-import com.example.javatravel.entity.HotelEntity;
-import com.example.javatravel.service.HotelService;
+import com.example.javatravel.dto.AirportDto;
+import com.example.javatravel.entity.AirportEntity;
+import com.example.javatravel.service.AirportService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -11,30 +10,29 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value ="/hotels", produces = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping(value = "/airports", produces = {MediaType.APPLICATION_JSON_VALUE})
 @RequiredArgsConstructor
-public class HotelController {
+public class AirportController {
 
-    private final HotelService hotelService;
+    private final AirportService airportService;
 
     @GetMapping
-    public ResponseEntity<List<HotelEntity>> getHotelList(){
+    public ResponseEntity<List<AirportEntity>> getAirportList() {
         try {
-            List<HotelEntity> hotels = hotelService.getHotelList();
-            return ResponseEntity.ok(hotels);
+            List<AirportEntity> airports = airportService.getAirportList();
+            return ResponseEntity.ok(airports);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
     @PostMapping
-    public ResponseEntity<HotelDto> addHotel(@RequestBody HotelDto hotelDto){
+    public ResponseEntity<AirportDto> addAirport(@RequestBody AirportDto airportDto) {
         try {
-            HotelDto addAirport = hotelService.addHotel(hotelDto);
+            AirportDto addAirport = airportService.addAirport(airportDto);
             return ResponseEntity.ok(addAirport);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -42,22 +40,23 @@ public class HotelController {
     }
 
     @PutMapping
-    public ResponseEntity<HotelEntity> updateHotel(@RequestBody HotelEntity hotel){
+    public ResponseEntity<AirportEntity> updateAirport(@RequestBody AirportEntity airport) {
         try {
-            HotelEntity updateAirport = hotelService.updateHotel(hotel);
+            AirportEntity updateAirport = airportService.updateAirport(airport);
             return ResponseEntity.ok(updateAirport);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteHotel(@PathVariable Long id){
+    @DeleteMapping("/{code}")
+    public ResponseEntity<Void> deleteAirport(@PathVariable String code) {
         try {
-            hotelService.deleteHotel(id);
+            airportService.deleteAirport(code);
             return ResponseEntity.noContent().build();
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
+
     }
 }
