@@ -17,7 +17,8 @@ public class HomeController {
                 .toString());
         return "home";
     }
-//rejestracja nowego usera @PostMapping
+
+
     @GetMapping("/login")
     public String login() {
         return "login";

@@ -42,10 +42,7 @@ public class TripService {
     }
 
     public TripDto addTrip(TripDto tripDto) {
-        //toDo
-        //validate()
-        //tripValidationException extens RuntimeException
-        //"nieprawidłowe daty.. sprawdź..."
+
         TripEntity tripEntity = TripMapper.toTripEntity(tripDto);
         TripEntity addTrip = tripRepository.save(tripEntity);
 
@@ -53,19 +50,7 @@ public class TripService {
     }
 
     public List<TripEntity> tripFilter(List<Long> selectedLocations, LocalDate startDate, LocalDate endDate) {
-     //   List<TripEntity> allTrips = tripRepository.findAll();
-        /* List<TripEntity> filterTrips = new ArrayList<>();
-        for(TripEntity trip: allTrips){
-            if (selectedLocations.contains(trip.getAirportTo().getLocation().getId())){
-               *//* LocalDate tripStartDate = trip.getStartDate();
-                LocalDate tripEndDate = trip.getEndDate();
-                if(((startDate == null || ( tripStartDate.isEqual(startDate) || tripStartDate.isAfter(startDate))) ||
-                        ((endDate == null || tripEndDate.isEqual(endDate) || tripEndDate.isAfter(endDate))))){
-              *//*      filterTrips.add(trip);
 
-               // }
-            }
-        }*/
        return tripRepository.listTripsByStartDateAndEndDate(startDate, endDate, selectedLocations);
     }
     public TripEntity getTripById(Long id) {

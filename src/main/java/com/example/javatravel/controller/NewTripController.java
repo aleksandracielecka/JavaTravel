@@ -86,31 +86,6 @@ public class NewTripController {
         return "redirect:/create_trip";
     }
 
-//    @PostMapping("/create_trip")
-//    public String createTrip(@RequestParam("selectedHotelId") Long selectedHotelId,
-//                             @RequestParam("airportCode") String code,
-////                             @RequestParam("airportToCode") String codeTo,
-//                             @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
-//                             @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
-//                             @RequestParam("maxAdultNumber") Integer maxAdultNumber,
-//                             @RequestParam("maxChildNumber") Integer maxChildNumber) {
-//
-//        HotelEntity selectedHotel = hotelService.getHotelById(selectedHotelId);
-//        AirportEntity selectedAirportFrom = airportService.getAirportCode(code);
-//        AirportEntity selectedAirportTo = airportService.getAirportCode(code);
-//
-//        if (selectedHotel != null) {
-//            TripDto newTripDto = new TripDto();
-//            newTripDto.setHotel(selectedHotel);
-//            newTripDto.setAirportFrom(selectedAirportFrom);
-//            newTripDto.setAirportTo(selectedAirportTo);
-//            newTripDto.setStartDate(startDate);
-//            newTripDto.setEndDate(endDate);
-//            newTripDto.setMaxAdultNumber(maxAdultNumber);
-//            newTripDto.setMaxChildNumber(maxChildNumber);
-//            tripService.addTrip(newTripDto);
-//        }
-//        return "redirect:/create_trip";
-//    }
+
 
 }
