@@ -1,9 +1,7 @@
 package com.example.javatravel.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -11,6 +9,9 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class TripEntity {
 
     @Id

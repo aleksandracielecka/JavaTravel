@@ -77,7 +77,7 @@ VALUES
 
 INSERT INTO trip_entity (start_date,end_date,max_adult_number,max_child_number,airport_from_code,airport_to_code,hotel_id,price_id)
 VALUES
-    ('2023-12-14','2023-12-16',20,10,'WRO','AGP',2,1),
+    ('2023-01-05','2023-01-07',20,10,'WRO','AGP',2,1),
     ('2023-12-16','2023-12-18',90,50,'KRK','HRG',4,2),
     ('2023-12-14','2023-12-20',45,55,'GDN','SWZ',13,7),
     ('2023-12-15','2023-12-31',100,99,'WMI','ZNZ',5,8);

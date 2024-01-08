@@ -10,7 +10,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -49,5 +52,14 @@ public class LocationService {
         LocationEntity savedLocationEntity = locationRepository.save(locationEntity);
         LocationDto dto = LocationMapper.toLocationDto(savedLocationEntity);
         return dto;
+    }
+
+    public Set<LocationEntity.Continent> getLocationSet(){
+        Set<LocationEntity.Continent> continents = new HashSet<>();
+        continents= locationRepository.findAll()
+                .stream()
+                .map(LocationEntity::getContinent)
+                .collect(Collectors.toSet());
+        return continents;
     }
 }

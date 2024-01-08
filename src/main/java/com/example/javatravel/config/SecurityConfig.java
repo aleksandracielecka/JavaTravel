@@ -8,9 +8,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class SecurityConfig {
+@EnableWebMvc
+public class SecurityConfig implements WebMvcConfigurer {
 
     @Bean
     public static PasswordEncoder passwordEncoder() {
@@ -56,5 +60,14 @@ public class SecurityConfig {
         return (web) -> web.ignoring().requestMatchers(new AntPathRequestMatcher("/h2-console/**"));
 
     }
+
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+                .addResourceHandler("/resources/**")
+                .addResourceLocations("/resources/");
+    }
 }
+
 

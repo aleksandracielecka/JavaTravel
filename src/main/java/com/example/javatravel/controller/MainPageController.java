@@ -3,6 +3,7 @@ package com.example.javatravel.controller;
 import com.example.javatravel.dto.LocationDto;
 import com.example.javatravel.entity.AirportEntity;
 import com.example.javatravel.entity.HotelEntity;
+import com.example.javatravel.entity.LocationEntity;
 import com.example.javatravel.entity.TripEntity;
 import com.example.javatravel.service.AirportService;
 import com.example.javatravel.service.HotelService;
@@ -18,7 +19,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @AllArgsConstructor
@@ -29,6 +33,8 @@ public class MainPageController {
 
     @GetMapping("/main_page")
     public String getWelcome(Model model) {
+        Set<LocationEntity.Continent> continents = locationService.getLocationSet();
+        model.addAttribute("continents", continents);
         List<LocationDto> locations = locationService.getLocationList();
         model.addAttribute("locations", locations);
         List<TripEntity> trips = tripService.getTripList();

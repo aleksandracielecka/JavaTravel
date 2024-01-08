@@ -1,16 +1,29 @@
 <!DOCTYPE html>
 
-<html  xmlns:sec="http://www.w3.org/1999/xhtml"
-        xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>MainPage</title>
+<!--    <link rel="stylesheet" type="text/css" th:href="@{/src/main/resources/static/css/images}"> &lt;!&ndash; Ścieżka do pliku CSS &ndash;&gt;-->
+    <style>
+        body {
+
+            background-image: url('/ocean.jpg');
+            background-size: cover;
+
+        }
+    </style>
+
+
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet">
 </head>
+<!--<body th:style="'background:url{'+ [[@{static/css/images/ocean.jpg}]] +'};'">-->
 <body>
-
+<!--<body th:style="'background: url(/ocean.jpg) no-repeat center center fixed;'">-->
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #e3f2fd;">
     <div class="container-fluid">
@@ -22,10 +35,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"  th:href="@{/main_page}">Strona główna</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/main_page}">Strona główna</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"  th:href="@{/purchases/purchases}">Kupione wycieczki</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/purchases/purchases}">Kupione
+                        wycieczki</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" th:href="@{/logout}">Wyloguj</a>
@@ -37,61 +51,95 @@
 
 <div style="margin-left: 20px; margin-right: 20px;margin-bottom: 20px;">
 
-<div sec:authorize="hasRole('ADMIN')">
-    <p> Witaj Adminie! </p>
+    <div sec:authorize="hasRole('ADMIN')">
+        <p> Witaj Adminie! </p>
 
-    <button type="button" class="btn btn-outline-secondary" onclick="window.location.href='/create_trip'">Dodaj nową wycieczkę</button>
-<br>
+        <button type="button" class="btn btn-outline-secondary" onclick="window.location.href='/create_trip'">Dodaj nową
+            wycieczkę
+        </button>
+        <br>
 
-</div>
-<div sec:authorize="hasRole('USER')">
-    <p> Witaj Użytkowniku! </p>
-</div>
-<form th:action="@{/filter_trips}" method="get">
-
-    <h2> Wybierz kierunki podróży</h2>
-    <div th:each="l : ${locations}">
-        <input type="checkbox" th:id="'location_' + ${l.getId()}" th:name="location" th:value="${l.getId()}"/>
-        <label th:for="'location_' + ${l.getId()}" th:text="${l.getCountry()+' '+l.getCity}"></label>
-        <br/>
     </div>
+    <div sec:authorize="hasRole('USER')">
+        <p> Witaj Użytkowniku! </p>
+    </div>
+    <form th:action="@{/filter_trips}" method="get">
 
-    <label for="startDate">Wybierz datę rozpoczęcia wycieczki:</label>
-    <input type="date" id="startDate" name="startDate">
-    <br/>
-    <label for="endDate">Wybierz datę zakończenia wycieczki:</label>
-    <input type="date" id="endDate" name="endDate">
-    <br/>
-    <button type="submit">Filtruj</button>
-    <br>
-</form>
-
-<h2> Dostępne wycieczki:</h2>
-<ul>
-
-    <li th:each="trip : ${trips}">
-        <div>
-            <span th:text="${trip.getAirportTo().getLocation().getCountry()+' - '+ trip.getAirportTo().getLocation().getCity()}"></span>
-            <a sec:authorize="hasRole('USER')" th:href="@{'/trip_details/' + ${trip.getId()}}">
-                <button>Wybierz</button>
-            </a>
-            <a sec:authorize="hasRole('ADMIN')" th:href="@{'trips/edit_trip/' + ${trip.getId()}}">
-                <button>Edytuj</button>
-            </a>
-            <a sec:authorize="hasRole('ADMIN')" th:href="@{'/trips/delete/' + ${trip.getId()}}">
-                <button>Usuń</button>
-            </a>
-            <a sec:authorize="hasRole('ADMIN')" th:href="@{'/trip_details/' + ${trip.getId()}}">
-                <button>Wybierz</button>
-            </a>
+        <h2> Wybierz kierunki podróży</h2>
+        <div style="display: inline-block;">
+            Kontynent:
+            <div th:each="c : ${continents}">
+                <input type="checkbox" th:id="c" th:name="${c}" th:value="${c}"/>
+                <label th:for="${c}" th:text="${c}"></label>
+                <br/>
+            </div>
         </div>
-        <div>Wylot z: <span th:text="${trip.getAirportFrom().getLocation().getCity()}"></span></div>
-        <div>Data rozpoczęcia: <span th:text="${trip.getStartDate()}"></span></div>
-        <div>Data zakończenia: <span th:text="${trip.getEndDate()}"></span></div>
-        <hr/>
-    </li>
 
-</ul>
+        <div style="display: inline-block;">
+            Kraj - miasto:
+            <div th:each="l : ${locations}">
+                <input type="checkbox" th:id="'location_' + ${l.getId()}" th:name="location" th:value="${l.getId()}"/>
+                <label th:for="'location_' + ${l.getId()}" th:text="${l.getCountry()}+' - '+${l.getCity()}"></label>
+                <br/>
+            </div>
+        </div>
+<!--        <div style="display: inline-block;">-->
+<!--            Miasto:-->
+<!--            <div th:each="l : ${locations}">-->
+<!--                <input type="checkbox" th:id="'location_' + ${l.getId()}" th:name="location" th:value="${l.getId()}"/>-->
+<!--                <label th:for="'location_' + ${l.getId()}" th:text="${l.getCity()}"></label>-->
+<!--                <br/>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <!--    <select class="form-select" aria-label="Default select example" multiple id ="multi-select">-->
+        <!--&lt;!&ndash;        <option selected> Wybierz kontynent</option>&ndash;&gt;-->
+        <!--        <option  th:each="c : ${continents}" th:value="${c}" th:text="${c}"/>-->
+
+        <!--    </select>-->
+        <!--    <script>-->
+        <!--        $('#select2').select2();-->
+        <!--    </script>-->
+        <div style="display: inline-block;">
+            <label for="startDate">Wybierz datę rozpoczęcia wycieczki:</label>
+            <input type="date" id="startDate" name="startDate">
+            <br/>
+        </div>
+        <div style="display: inline-block;">
+            <label for="endDate">Wybierz datę zakończenia wycieczki:</label>
+            <input type="date" id="endDate" name="endDate">
+            <br/>
+            <button type="submit">Filtruj</button>
+            <br>
+        </div>
+    </form>
+
+    <h2> Dostępne wycieczki:</h2>
+    <ul>
+
+        <li th:each="trip : ${trips}">
+            <div>
+                <span th:text="${trip.getAirportTo().getLocation().getCountry()+' - '+ trip.getAirportTo().getLocation().getCity()}"></span>
+                <a sec:authorize="hasRole('USER')" th:href="@{'/trip_details/' + ${trip.getId()}}">
+                    <button>Wybierz</button>
+                </a>
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{'trips/edit_trip/' + ${trip.getId()}}">
+                    <button>Edytuj</button>
+                </a>
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{'/trips/delete/' + ${trip.getId()}}">
+                    <button>Usuń</button>
+                </a>
+                <a sec:authorize="hasRole('ADMIN')" th:href="@{'/trip_details/' + ${trip.getId()}}">
+                    <button>Wybierz</button>
+                </a>
+            </div>
+            <div>Wylot z: <span th:text="${trip.getAirportFrom().getLocation().getCity()}"></span></div>
+            <div>Data rozpoczęcia: <span th:text="${trip.getStartDate()}"></span></div>
+            <div>Data zakończenia: <span th:text="${trip.getEndDate()}"></span></div>
+            <hr/>
+        </li>
+
+    </ul>
 </div>
 </body>
 </html>
